@@ -1,48 +1,46 @@
 
-export const Login = () => {
+export const Login = ({ switchAuthHandler}) => {
   return (
     <>
-      <div class="container">
-        <div class="row">
-			<div class="col-md-5 mx-auto">
+      <div className="container position-absolute top-50 start-50 translate-middle">
+        <div className="row">
+			<div className="col-md-5 mx-auto">
 			<div id="first">
-				<div class="myform form ">
-					 <div class="logo mb-3">
-						 <div class="col-md-12 text-center">
+				<div className="myform form ">
+					 <div className="logo mb-3">
+						 <div className="col-md-12 text-center">
 							<h1>Login</h1>
 						 </div>
 					</div>
                    <form action="" method="post" name="login">
-                           <div class="form-group">
+                           <div className="form-group">
                               <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                              <input type="email" name="email"  className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
                            </div>
-                           <div class="form-group">
+                           <div className="form-group">
                               <label for="exampleInputEmail1">Password</label>
-                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password"/>
+                              <input type="password" name="password" id="password"  className="form-control" aria-describedby="emailHelp" placeholder="Enter Password"/>
                            </div>
-                           <div class="form-group">
-                              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                           <div className="form-group">
+                              <p className="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
                            </div>
-                           <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                           <div className="col-md-12 text-center ">
+                              <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
                            </div>
-                           <div class="col-md-12 ">
-                              <div class="login-or">
-                                 <hr class="hr-or"/>
-                                 <span class="span-or">or</span>
+                           <div className="col-md-12 ">
+                              <div className="login-or">
+                                 <hr className="hr-or"/>
+                                 <span className="span-or d-flex justify-content-center">or</span>
                               </div>
                            </div>
-                           <div class="col-md-12 mb-3">
-                              <p class="text-center">
-                                 <a href="javascript:void();" class="google btn mybtn"><i class="fa fa-google-plus">
-                                 </i> Signup using Google
-                                 </a>
+                           <div className="col-md-12 mb-3">
+                              <p className="text-center">
+                              <span className="text-center"><a onClick={switchAuthHandler} id="log">You have an account?</a></span>
+
                               </p>
                            </div>
-                           <div class="form-group">
-                              <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
-                           </div>
+                           
+                           
                         </form>
                  
 				</div>

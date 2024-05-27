@@ -50,7 +50,7 @@ export const Register = () => {
               <input type="password" className="register__input" placeholder="Password" />
             </div>
             <button className="register__submit">
-              <span className="button__text d-flex justify-content-center"><center>Register</center></span>
+              <span className="button__text d-flex justify-content-center">Register</span>
               <i className="button__icon fas fa-chevron-right"></i>
             </button>
           </form>

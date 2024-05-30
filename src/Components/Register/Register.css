@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +7,7 @@
 }
 
 body {
-  background: linear-gradient(90deg, #C7C5F4, #776BCC);
+  background: linear-gradient(90deg, #C7C5F4, #776BCC); /* Esto se quitara luego*/
 }
 
 .container {
@@ -16,21 +15,27 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding-top: 20px; 
+  padding-bottom: 20px; 
 }
 
 .screen {
-  background: linear-gradient(90deg, #5D54A4, #7C78B8);
+  background: linear-gradient(90deg, #341ce9, #0c0755);
   position: relative;
-  height: auto;
-  width: 400px; /* Increased the width */
+  height: 90vh; /* Increased height to fit more content */
+  width: 100%; /* Adjusted to be responsive */
+  max-width: 500px; /* Increased max-width for more content space */
   box-shadow: 0px 0px 24px #5C5696;
   border-radius: 10px;
+  padding: 30px; /* Padding for card-like appearance */
+  overflow: hidden; /* Ensure content stays within the card */
 }
 
 .screen__content {
   z-index: 1;
   position: relative;
   height: 100%;
+  padding: 0 30px; /* Added padding for content */
 }
 
 .screen__background {
@@ -61,7 +66,7 @@ body {
 .screen__background__shape2 {
   height: 220px;
   width: 220px;
-  background: #6C63AC;
+  background: #dad7f0;
   top: -172px;
   right: 0;
   border-radius: 32px;
@@ -70,7 +75,7 @@ body {
 .screen__background__shape3 {
   height: 540px;
   width: 190px;
-  background: linear-gradient(270deg, #5D54A4, #6A679E);
+  background: linear-gradient(270deg, #0b0342, #0d095e);
   top: -24px;
   right: 0;
   border-radius: 32px;
@@ -79,27 +84,26 @@ body {
 .screen__background__shape4 {
   height: 400px;
   width: 200px;
-  background: #7E7BB9;
+  background: #283744;
   top: 420px;
   right: 50px;
   border-radius: 60px;
 }
 
 .register {
-  width: 360px; /* Adjusted to match the new screen width */
-  padding: 30px;
-  padding-top: 50px;
+  width: 100%; /* Adjusted to match the screen width */
   color: #fff; /* Changed text color to white */
+  padding-top: 20px; /* Adjusted padding-top for better spacing */
 }
 
 .register__field {
-  padding: 20px 0;
+  padding: 10px 0; /* Reduced padding for more compact fields */
   position: relative;
 }
 
 .register__icon {
   position: absolute;
-  top: 30px;
+  top: 20px; /* Adjusted to match new padding */
   color: #fff; /* Changed icon color to white */
 }
 
@@ -131,8 +135,6 @@ body {
   border: 1px solid #D4D3E8;
   text-transform: uppercase;
   font-weight: 700;
- 
-
   width: 100%;
   color: #4C489D;
   box-shadow: 0px 2px 2px #5C5696;

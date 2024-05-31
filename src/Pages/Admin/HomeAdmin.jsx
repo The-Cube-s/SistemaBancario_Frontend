@@ -1,7 +1,11 @@
 import React from 'react'
+import { Sidebar } from '../../Components/ADMIN/Sidebar'
 
 export const HomeAdmin = () => {
   return (
-    <div>HomeAdmin</div>
+    <>
+      <Sidebar />
+      HomeAdmin
+    </>
   )
 }

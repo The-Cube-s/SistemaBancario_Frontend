@@ -1,31 +1,44 @@
 import React from 'react';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareAlt, faHdd, faNewspaper, faPrint, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCreditCard, faShoppingBag, faSignOutAlt, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
   return (
     <nav className="sidebar-navigation">
       <ul>
-        <li className="active">
-          <FontAwesomeIcon icon={faShareAlt} />
-          <span className="tooltip">USERS</span>
+        <li>
+          <Link to="/home/banco/users">
+            <FontAwesomeIcon icon={faUser} />
+            <span className="tooltip">USERS</span>
+          </Link>
         </li>
         <li>
-          <FontAwesomeIcon icon={faHdd} />
-          <span className="tooltip">ACCOUNTS</span>
+          <Link to="/home/banco/accounts">
+            <FontAwesomeIcon icon={faCreditCard} />
+            <span className="tooltip">ACCOUNTS</span>
+          </Link>
         </li>
         <li>
-          <FontAwesomeIcon icon={faNewspaper} />
-          <span className="tooltip">PRODUCTS</span>
+          <Link to="/home/banco/products">
+            <FontAwesomeIcon icon={faShoppingBag} />
+            <span className="tooltip">PRODUCTS</span>
+          </Link>
         </li>
         <li>
-          <FontAwesomeIcon icon={faPrint} />
-          <span className="tooltip">Fax</span>
+          <Link to="/home/banco/settings">
+            <FontAwesomeIcon icon={faSliders} />
+            <span className="tooltip">Settings</span>
+          </Link>
         </li>
+      </ul>
+      <ul className="logout">
         <li>
-          <FontAwesomeIcon icon={faSliders} />
-          <span className="tooltip">Settings</span>
+          <Link to="/home/banco/logout">
+            <FontAwesomeIcon icon={faSignOutAlt} />
+            <span className="tooltip">Logout</span>
+          </Link>
         </li>
       </ul>
     </nav>

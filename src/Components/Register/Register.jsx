@@ -1,42 +1,62 @@
-import React from 'react'
+import React from 'react';
+import './Register.css';
 
-export const Register = ({ switchAuthHandler }) => {
+export const Register = () => {
   return (
-    
-			      <div className="myform form position-absolute top-50 start-50 translate-middle ">
-                        <div className="logo mb-3">
-                           <div className="col-md-12 text-center">
-                              <h1 >Signup</h1>
-                           </div>
-                        </div>
-                        <form action="#" name="registration"/>
-                           <div className="form-group">
-                              <label for="exampleInputEmail1">First Name</label>
-                              <input type="text"  name="firstname" className="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname"/>
-                           </div>
-                           <div className="form-group">
-                              <label for="exampleInputEmail1">Last Name</label>
-                              <input type="text"  name="lastname" className="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname"/>
-                           </div>
-                           <div className="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
-                           </div>
-                           <div className="form-group">
-                              <label for="exampleInputEmail1">Password</label>
-                              <input type="password" name="password" id="password"  className="form-control" aria-describedby="emailHelp" placeholder="Enter Password"/>
-                           </div>
-                           <div className="col-md-12 text-center mb-3">
-                              <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
-                           </div>
-                           <div className="col-md-12 ">
-                              <div className="form-group">
-                                 <span className="text-center"><a onClick={switchAuthHandler} id="signin">Already have an account?</a></span>
-                              </div>
-                           </div>
-                            </div>
-                        
-                     
-  )
-}
+    <div className="container">
+      <div className="screen">
+        <div className="screen__background">
+          <span className="screen__background__shape screen__background__shape1"></span>
+          <span className="screen__background__shape screen__background__shape2"></span>
+          <span className="screen__background__shape screen__background__shape3"></span>
+          <span className="screen__background__shape screen__background__shape4"></span>
+        </div>
+        <div className="screen__content">
+          <form className="register">
+            <div className="register__field">
+              <i className="register__icon fas fa-user"></i>
+              <input type="text" className="register__input" placeholder="Name" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-user"></i>
+              <input type="text" className="register__input" placeholder="Username" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-id-card"></i>
+              <input type="text" className="register__input" placeholder="DPI" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-map-marker-alt"></i>
+              <input type="text" className="register__input" placeholder="Address" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-phone"></i>
+              <input type="text" className="register__input" placeholder="Phone Number" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-envelope"></i>
+              <input type="email" className="register__input" placeholder="Email" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-briefcase"></i>
+              <input type="text" className="register__input" placeholder="Work Name" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-dollar-sign"></i>
+              <input type="number" className="register__input" placeholder="Monthly Income" />
+            </div>
+            <div className="register__field">
+              <i className="register__icon fas fa-lock"></i>
+              <input type="password" className="register__input" placeholder="Password" />
+            </div>
+            <button className="register__submit">
+              <span className="button__text d-flex justify-content-center">Register</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
 
+        </div>
+      </div>
+    </div>
+  );
+}

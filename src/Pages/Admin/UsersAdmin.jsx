@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-export const UsersAdmin = () => {
-  return (
-    <div>UsersAdmin</div>
-  )
-}
-=======
 import React from 'react';
 import styled from 'styled-components';
 
@@ -163,4 +154,3 @@ export const UsersAdmin = () => {
 };
 
 export default UsersAdmin;
->>>>>>> origin/main

@@ -10,7 +10,7 @@ import { UsersAdmin } from "./Pages/Admin/UsersAdmin";
 import { AccountAdmin } from "./Pages/Admin/AccountAdmin";
 import { ProductAdmin } from "./Pages/Admin/ProductAdmin";
 import { SettingsAdmin } from "./Pages/Admin/SettingsAdmin";
-import { Register } from "./Pages/Admin/Register";
+import { RegisterAdmin } from "./Pages/Admin/RegisterAdmin";
 
 export const routes = [
     {
@@ -51,7 +51,7 @@ export const routes = [
   },
   {
     path: '/home/banco/register',
-    element: <Layout><Register /></Layout>
+    element: <Layout><RegisterAdmin /></Layout>
   }
     
 

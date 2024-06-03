@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomeClient } from '../Pages/Client/HomeClient'
 import { NotFoundPage } from '../Pages/NotFound/NotFoundPage';
 //Admin pages
-import { HomeAdmin } from '../Pages/Admin/HomeAdmin'
+import { UsersAdmin } from '../Pages/Admin/UsersAdmin';
 import Layout from '../Components/ADMIN/Layout';
 
 
@@ -16,7 +16,7 @@ export const ContentRole = () => {
   return (
       <Routes>
         {role === 'ADMIN' ? (
-          <Route path="banco" element={<Layout><HomeAdmin /></Layout>} />
+          <Route path="banco" element={<Layout><UsersAdmin /></Layout>} />
         ) : role === 'CLIENT' ? (
           <Route path="banco" element={<HomeClient />} />
         ) : (

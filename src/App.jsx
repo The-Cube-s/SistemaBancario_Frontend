@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Login } from './Components/Login/Login'
 import { Toaster } from "react-hot-toast"
+<<<<<<< HEAD
 import { testRequest } from './Services/apiAdmin'
 
 function App() {
@@ -17,6 +18,13 @@ function App() {
 
     checkBackendConnection();
   }, []);
+=======
+
+
+function App() {
+ 
+  
+>>>>>>> origin/main
   return (
     <>
       <Login/>

@@ -30,6 +30,20 @@ export const loginRequest = async(user)=>{
     }
 }
 
+<<<<<<< HEAD
+=======
+export const registerRequest = async(user)=>{
+    try {
+        return await apiClient.post('/user/register', user)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+>>>>>>> origin/main
 export const testRequest = async()=>{
     try {
         return await apiClient.get('/user/test')

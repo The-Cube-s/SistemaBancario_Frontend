@@ -26,6 +26,19 @@ body {
     padding: 0;
 }
 
+<<<<<<< HEAD
+=======
+.sidebar-navigation ul a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-navigation ul a:hover {
+    text-decoration: none;
+}
+
+>>>>>>> origin/main
 .sidebar-navigation ul li {
     position: relative;
     padding: 28px 0;
@@ -33,6 +46,7 @@ body {
     transition: all ease-out 120ms;
 }
 
+<<<<<<< HEAD
 .sidebar-navigation ul li a {
     display: block;
     color: white;
@@ -44,6 +58,9 @@ body {
 }
 
 .sidebar-navigation ul li a .tooltip {
+=======
+.sidebar-navigation ul a .tooltip {
+>>>>>>> origin/main
     display: inline-block;
     position: absolute;
     background-color: #313443;
@@ -57,7 +74,11 @@ body {
     letter-spacing: .5px;
 }
 
+<<<<<<< HEAD
 .sidebar-navigation ul li a .tooltip:before {
+=======
+.sidebar-navigation ul a .tooltip:before {
+>>>>>>> origin/main
     content: '';
     display: block;
     position: absolute;
@@ -69,11 +90,19 @@ body {
     background-color: inherit;
 }
 
+<<<<<<< HEAD
 .sidebar-navigation ul li:hover {
     background-color: #22252E;
 }
 
 .sidebar-navigation ul li:hover .tooltip {
+=======
+.sidebar-navigation ul a:hover li {
+    background-color: #22252E;
+}
+
+.sidebar-navigation ul a:hover .tooltip {
+>>>>>>> origin/main
     visibility: visible;
     opacity: 1;
 }

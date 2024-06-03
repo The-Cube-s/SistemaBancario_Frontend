@@ -1,7 +1,36 @@
 import React from 'react';
 import './Register.css';
+import { useRegister } from '../../Shared/Hooks/Login and Register/useRegister';
 
 export const Register = () => {
+  /*const { register, isLoading } = useRegister();
+
+  const [formData, setFormData] = useState({
+    name: {
+      value: '',
+      isValid: false,
+      showError: false
+    },
+    surname: {
+      value: '',
+      isValid: false,
+      showError: false
+    },
+    username: {
+      value: '',
+      isValid: false,
+      showError: false
+    },
+    password: {
+      value: '',
+      isValid: false,
+      showError: false
+    },
+    
+
+  })
+*/
+ 
   return (
     <div className="container">
       

@@ -26,6 +26,16 @@ body {
     padding: 0;
 }
 
+.sidebar-navigation ul a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-navigation ul a:hover {
+    text-decoration: none;
+}
+
 .sidebar-navigation ul li {
     position: relative;
     padding: 28px 0;
@@ -33,17 +43,7 @@ body {
     transition: all ease-out 120ms;
 }
 
-.sidebar-navigation ul li a {
-    display: block;
-    color: white;
-    text-decoration: none;
-}
-
-.sidebar-navigation ul li a:hover {
-    text-decoration: none;
-}
-
-.sidebar-navigation ul li a .tooltip {
+.sidebar-navigation ul a .tooltip {
     display: inline-block;
     position: absolute;
     background-color: #313443;
@@ -57,7 +57,7 @@ body {
     letter-spacing: .5px;
 }
 
-.sidebar-navigation ul li a .tooltip:before {
+.sidebar-navigation ul a .tooltip:before {
     content: '';
     display: block;
     position: absolute;
@@ -69,11 +69,11 @@ body {
     background-color: inherit;
 }
 
-.sidebar-navigation ul li:hover {
+.sidebar-navigation ul a:hover li {
     background-color: #22252E;
 }
 
-.sidebar-navigation ul li:hover .tooltip {
+.sidebar-navigation ul a:hover .tooltip {
     visibility: visible;
     opacity: 1;
 }

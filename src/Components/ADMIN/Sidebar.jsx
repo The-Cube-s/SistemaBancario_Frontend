@@ -1,46 +1,54 @@
 import React from 'react';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCreditCard, faShoppingBag, faSignOutAlt, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCreditCard, faShoppingBag, faSignOutAlt, faSliders, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
   return (
     <nav className="sidebar-navigation">
       <ul>
-        <li>
-          <Link to="/home/banco/users">
+        <Link to="/home/banco/users">
+          <li>
             <FontAwesomeIcon icon={faUser} />
             <span className="tooltip">USERS</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/home/banco/accounts">
+          </li>
+        </Link>
+        <Link to="/home/banco/accounts">
+          <li>
             <FontAwesomeIcon icon={faCreditCard} />
             <span className="tooltip">ACCOUNTS</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/home/banco/products">
+          </li>
+        </Link>
+        <Link to="/home/banco/products">
+          <li>
             <FontAwesomeIcon icon={faShoppingBag} />
             <span className="tooltip">PRODUCTS</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/home/banco/settings">
+          </li>
+        </Link>
+        <Link to="/home/banco/settings">
+          <li>
             <FontAwesomeIcon icon={faSliders} />
             <span className="tooltip">Settings</span>
-          </Link>
-        </li>
+          </li>
+        </Link>
+        <Link to="/home/banco/register">
+          <li>
+            <FontAwesomeIcon icon={faAddressCard} />
+            <span className="tooltip">Register</span>
+          </li>
+        </Link>
       </ul>
       <ul className="logout">
-        <li>
-          <Link to="/home/banco/logout">
+        <Link to="/home/banco/logout">
+          <li>
             <FontAwesomeIcon icon={faSignOutAlt} />
             <span className="tooltip">Logout</span>
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
     </nav>
   );
 };
+
+export default Sidebar;

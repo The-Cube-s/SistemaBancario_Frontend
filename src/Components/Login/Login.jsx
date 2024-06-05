@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLogin } from "../../Shared/Hooks/Login and Register/useLogin";
+import styled from "styled-components";
 
 export const Login = () => {
   const { login, isLoading } = useLogin();
@@ -15,6 +16,9 @@ export const Login = () => {
       showError: false
     }
   });
+
+
+  
 
   const isSubmitButtonDisable = !formData.account.isValid || !formData.password.isValid;
 
@@ -54,67 +58,119 @@ export const Login = () => {
   };
 
   return (
-    <div className="container position-absolute top-50 start-50 translate-middle">
-      <div className="row">
-        <div className="col-md-5 mx-auto">
-          <div id="first">
-            <div className="myform form">
-              <div className="logo mb-3">
-                <div className="col-md-12 text-center">
-                  <h1>Login</h1>
-                </div>
-              </div>
-              <form onSubmit={handleLogin}>
-                <div className="form-group">
-                  <label htmlFor="account">Account</label>
-                  <input
-                    type="text"
-                    name="account"
-                    className={`form-control ${formData.account.showError ? 'is-invalid' : ''}`}
-                    id="account"
-                    aria-describedby="accountHelp"
-                    placeholder="Enter account"
-                    onChange={handleChange}
-                    value={formData.account.value}
-                  />
-                  {formData.account.showError && <div className="invalid-feedback">Account is required.</div>}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className={`form-control ${formData.password.showError ? 'is-invalid' : ''}`}
-                    aria-describedby="passwordHelp"
-                    placeholder="Enter Password"
-                    onChange={handleChange}
-                    value={formData.password.value}
-                  />
-                  {formData.password.showError && <div className="invalid-feedback">Password is required.</div>}
-                </div>
-                <div className="form-group">
-                  <p className="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-                </div>
-                <div className="col-md-12 text-center">
-                  <button className='form__button' disabled={isSubmitButtonDisable}>Login</button>
-                </div>
-                <div className="col-md-12">
-                  <div className="login-or">
-                    <hr className="hr-or" />
-                    <span className="span-or d-flex justify-content-center">or</span>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-3">
-                  <p className="text-center">
-                    <span className="text-center"><a id="log">You have an account?</a></span>
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    <Container>
+    <FormWrapper>
+      <Title>Login</Title>
+      <Form onSubmit={handleLogin}>
+        <FormGroup>
+          <Label htmlFor="account">Account</Label>
+          <Input
+            type="text"
+            name="account"
+            id="account"
+            className={formData.account.showError ? 'is-invalid' : ''}
+            placeholder="Enter account"
+            onChange={handleChange}
+            value={formData.account.value}
+          />
+          {formData.account.showError && <div className="invalid-feedback">Account is required.</div>}
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="password">Password</Label>
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            className={formData.password.showError ? 'is-invalid' : ''}
+            placeholder="Enter Password"
+            onChange={handleChange}
+            value={formData.password.value}
+          />
+          {formData.password.showError && <div className="invalid-feedback">Password is required.</div>}
+        </FormGroup>
+        <Button disabled={isSubmitButtonDisable}>Login</Button>
+        {isLoading && <Message>Loading...</Message>}
+        {formData.error && <Message error>{formData.error}</Message>}
+      </Form>
+    </FormWrapper>
+  </Container>
+);
 };
+
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212;
+`;
+
+const FormWrapper = styled.div`
+  background: #1c1c1c;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 6px 6px 12px #0e0e0e, -6px -6px 12px #282828;
+  width: 400px;
+  max-width: 100%;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+`;
+
+const Form = styled.form``;
+
+const FormGroup = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-bottom: 8px;
+  color: #cccccc;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1c1c1c;
+  box-shadow: inset 6px 6px 12px #0e0e0e, inset -6px -6px 12px #282828;
+  color: #ffffff;
+  &:focus {
+    outline: none;
+  }
+  &.is-invalid {
+    box-shadow: inset 6px 6px 12px #0e0e0e, inset -6px -6px 12px #282828, 0 0 0 2px red;
+  }
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1c1c1c;
+  box-shadow: 6px 6px 12px #0e0e0e, -6px -6px 12px #282828;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  &:hover {
+    background: #333333;
+  }
+  &:disabled {
+    background: #3a3a3a;
+    cursor: not-allowed;
+  }
+`;
+
+const Message = styled.p`
+  color: ${(props) => (props.error ? 'red' : 'green')};
+  text-align: center;
+  margin-top: 20px;
+`;

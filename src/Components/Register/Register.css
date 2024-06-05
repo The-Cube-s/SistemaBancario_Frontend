@@ -2,39 +2,24 @@
   display: flex;
   justify-content: center; /* Centra el div principal horizontalmente */
   align-items: center; /* Centra el div principal verticalmente */
-  height: 100vh; /* Ocupa toda la altura de la ventana */
-  
-  color: #fff; /* Texto blanco */
-}
-
-.sidebar {
-  width: 200px;
-  padding: 20px;
-  background-color: #2c2c2c; /* Fondo oscuro ligeramente más claro */
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin-bottom: 10px;
+  height: 100vh; 
+  color: #fff;
 }
 
 .main-content {
   flex-grow: 1;
-  padding: 20px;
-  max-width: 800px; /* Limita el ancho máximo del contenido principal */
-  background-color: #333; /* Fondo del contenido principal */
-  border: 1px solid #444; /* Borde del contenido principal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-  border-radius: 8px; /* Bordes redondeados */
+  padding: 40px; 
+  
+  width: 90vh;
+  background-color: #333; 
+  border: 1px solid #444; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
 }
 
 .main-content h2 {
   margin-bottom: 20px;
-  text-align: center; /* Centra el título */
+  text-align: center; 
 }
 
 .form-row {
@@ -54,11 +39,11 @@
 
 .form-group input {
   width: 100%;
-  padding: 8px;
-  background-color: #444; /* Fondo de los campos de entrada */
-  border: 1px solid #555; /* Borde de los campos de entrada */
-  color: #fff; /* Color del texto de entrada */
-  border-radius: 4px; /* Bordes redondeados de los campos de entrada */
+  padding: 12px; 
+  background-color: #444; 
+  border: 1px solid #555; 
+  color: #fff; 
+  border-radius: 4px; 
 }
 
 .save-button {
@@ -68,7 +53,7 @@
 }
 
 .save-button button {
-  padding: 10px 20px;
+  padding: 15px 30px; /* Aumenta el tamaño del botón */
   background-color: #007bff; /* Fondo del botón azul */
   border: none;
   color: #fff; /* Color del texto del botón */

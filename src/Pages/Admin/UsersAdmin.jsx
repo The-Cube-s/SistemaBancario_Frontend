@@ -130,7 +130,7 @@ export const UsersAdmin = () => {
             <Title>User Management</Title>
             <SearchBar
                 type="text"
-                placeholder="Search user by name, username, account number, phone number, job"
+                placeholder="Search user by name, username, DPI, phone number, job"
                 onChange={e => setQuery(e.target.value)}
             />
             <Table>
@@ -138,7 +138,7 @@ export const UsersAdmin = () => {
                     <tr>
                         <Th>Name</Th>
                         <Th>Username</Th>
-                        <Th>Account Number</Th>
+                        <Th>DPI</Th>
                         <Th>Phone Number</Th>
                         <Th>Job</Th>
                         <Th>Operations</Th>
@@ -149,7 +149,7 @@ export const UsersAdmin = () => {
                         <tr key={user.id}>
                             <Td>{user.name}</Td>
                             <Td>{user.username}</Td>
-                            <Td>{user.noaccount}</Td>
+                            <Td>{user.DPI}</Td>
                             <Td>{user.phone}</Td>
                             <Td>{user.jobname}</Td>
                             <Td>

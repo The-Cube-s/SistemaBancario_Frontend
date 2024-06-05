@@ -3,68 +3,64 @@ import toast from "react-hot-toast";
 import { registerRequest } from "../../../Services/apiAdmin";
 
 export const useRegister = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [user, setUser] = useState({
+        name: '',
+        surname: '',
+        username: '',
+        accountNumber: '',
+        DPI: '',
+        address: '',
+        phone: '',
+        email: '',
+        password: '',
+        retypePassword: '',
+        jobname: '',
+        monthlyincome: '',
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
 
-    const register = async (
-        name,
-        surname,
-        username,
-        DPI,
-        address,
-        password,
-        email,
-        phone,
-        jobname,
-        monthlyincome,
-        role
-    ) => {
-        setIsLoading(true);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser({
+            ...user,
+            [name]: value,
+        });
+    };
 
-        const user = {
-            name,
-            surname,
-            username,
-            DPI,
-            address,
-            password,
-            email,
-            phone,
-            jobname,
-            monthlyincome,
-            role,
-        };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        setSuccess(false);
+
+        if (user.password !== user.retypePassword) {
+            setError('Passwords do not match');
+            setLoading(false);
+            return;
+        }
 
         try {
-            // Consulta al API
             const response = await registerRequest(user);
-            setIsLoading(false);
-
-            if (response.error) {
-                if (response?.err?.response?.data?.message) {
-                    let arr = response?.err?.response?.data?.errors;
-                    for (const error of arr) {
-                        toast.error(error.msg);
-                    }
-                } else {
-                    toast.error(
-                        response?.err?.response?.data?.msg ||
-                        response?.err?.data?.msg ||
-                        'Error general al intentar registrar el usuario. Intenta de nuevo.'
-                    );
-                }
+            if (response.status === 200) {
+                setSuccess(true);
             } else {
-                // Registro exitoso
-                toast.success('¡Usuario registrado exitosamente!');
-                
+                setError(response.data?.message || 'Something went wrong');
             }
-        } catch (error) {
-            setIsLoading(false);
-            toast.error('Error al intentar registrar el usuario. Intenta de nuevo.');
+        } catch (err) {
+            setError(err.response?.data?.message || 'Something went wrong');
+        } finally {
+            setLoading(false);
         }
     };
 
     return {
-        register,
-        isLoading,
+        user,
+        handleChange,
+        handleSubmit,
+        loading,
+        error,
+        success,
     };
 };

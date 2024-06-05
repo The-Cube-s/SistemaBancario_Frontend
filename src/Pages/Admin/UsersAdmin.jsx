@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useUsers } from '../../Shared/Hooks/Admin/useUsers';
 
 const UsersAdminContainer = styled.div`
   padding: 20px;
   color: #000;
   background-color: #f8f9fa;
   min-height: 100vh;
-  
 `;
 
 const Title = styled.h2`
@@ -30,7 +30,6 @@ const Table = styled.table`
   margin-bottom: 20px;
   border-radius: 5px;
   overflow: hidden;
-  justify-content: center;
 `;
 
 const Thead = styled.thead`
@@ -102,55 +101,76 @@ const Pagination = styled.div`
 `;
 
 export const UsersAdmin = () => {
-  const users = [
-    { name: 'Samantha Williams', username: 'sammy.1982', accountNumber: '****1234', phoneNumber: '123-456-7890', job: 'gamer' },
-    { name: 'Michael Johnson', username: 'mike.johnson', accountNumber: '****5678', phoneNumber: '234-567-8901', job: 'gamer' },
-    { name: 'Emma Thompson', username: 'emma.t', accountNumber: '****9101', phoneNumber: '345-678-9012', job: 'gamer' },
-    { name: 'Christopher Davis', username: 'chris.davis', accountNumber: '****1121', phoneNumber: '456-789-0123', job: 'gamer' },
-    { name: 'Jessica Brown', username: 'jess.brown', accountNumber: '****3141', phoneNumber: '567-890-1234', job: 'gamer' },
-  ];
+    const { users, getUsers, isFetching } = useUsers();
+    const [query, setQuery] = useState('');
+    const [filteredUsers, setFilteredUsers] = useState([]);
 
-  return (
-    <UsersAdminContainer>
-      <Title>User Management</Title>
-      <SearchBar type="text" placeholder="Search user by name, username, account number, phone number, job" />
-      <Table>
-        <Thead>
-          <tr>
-            <Th>Name</Th>
-            <Th>Username</Th>
-            <Th>Account Number</Th>
-            <Th>Phone Number</Th>
-            <Th>Job</Th>
-            <Th>Operations</Th>
-          </tr>
-        </Thead>
-        <Tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <Td>{user.name}</Td>
-              <Td>{user.username}</Td>
-              <Td>{user.accountNumber}</Td>
-              <Td>{user.phoneNumber}</Td>
-              <Td>{user.job}</Td>
-              <Td>
-                <Button>View</Button>
-                <Button>Edit</Button>
-                <Button>Delete</Button>
-              </Td>
-            </tr>
-          ))}
-        </Tbody>
-      </Table>
-      <Pagination>
-        <span className="active">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-      </Pagination>
-    </UsersAdminContainer>
-  );
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+    useEffect(() => {
+        if (users) {
+            setFilteredUsers(
+                users.filter(user =>
+                    Object.values(user).some(value =>
+                        value.toString().toLowerCase().includes(query.toLowerCase())
+                    )
+                )
+            );
+        }
+    }, [query, users]);
+
+    if (isFetching) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <UsersAdminContainer>
+            <Title>User Management</Title>
+            <SearchBar
+                type="text"
+                placeholder="Search user by name, username, account number, phone number, job"
+                onChange={e => setQuery(e.target.value)}
+            />
+            <Table>
+                <Thead>
+                    <tr>
+                        <Th>Name</Th>
+                        <Th>Username</Th>
+                        <Th>Account Number</Th>
+                        <Th>Phone Number</Th>
+                        <Th>Job</Th>
+                        <Th>Operations</Th>
+                    </tr>
+                </Thead>
+                <Tbody>
+                    {filteredUsers.map((user, index) => (
+                        <tr key={user.id}>
+                            <Td>{user.name}</Td>
+                            <Td>{user.username}</Td>
+                            <Td>{user.noaccount}</Td>
+                            <Td>{user.phone}</Td>
+                            <Td>{user.jobname}</Td>
+                            <Td>
+                                <Button>View</Button>
+                                <Button>Edit</Button>
+                                <Button>Delete</Button>
+                            </Td>
+                        </tr>
+                    ))}
+                </Tbody>
+            </Table>
+            <Pagination>
+                {/* Por si hay muchos usuarios (el 1ero es el por defecto)*/}
+                <span className="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </Pagination>
+        </UsersAdminContainer>
+    );
 };
 
 export default UsersAdmin;

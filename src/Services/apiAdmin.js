@@ -11,7 +11,7 @@ apiClient.interceptors.request.use(
         if (userDetails) {
             const token = JSON.parse(userDetails)
             config.headers.Authorization = `${token}`
-            console.log(`Token ingresado ${token}`)
+            
         }
         return config
     },
@@ -44,6 +44,17 @@ export const registerRequest = async(user)=>{
 export const testRequest = async()=>{
     try {
         return await apiClient.get('/user/test')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const watchUsersRequest = async()=>{
+    try {
+        return await apiClient.get('/user/getUser')
     } catch (err) {
         return {
             error: true,

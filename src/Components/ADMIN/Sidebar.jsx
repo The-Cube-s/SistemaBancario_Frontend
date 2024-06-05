@@ -3,8 +3,17 @@ import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCreditCard, faShoppingBag, faSignOutAlt, faSliders, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useUserDetails } from '../../Shared/Hooks/useUserDetails';
 
 export const Sidebar = () => {
+  // Obtenemos logoutSys del hook useUserDetails
+  const { logoutSys } = useUserDetails(); 
+
+  const handleLogout = () => {
+    logoutSys();
+    
+  }
+
   return (
     <nav className="sidebar-navigation">
       <ul>
@@ -40,12 +49,10 @@ export const Sidebar = () => {
         </Link>
       </ul>
       <ul className="logout">
-        <Link to="/home/banco/logout">
-          <li>
-            <FontAwesomeIcon icon={faSignOutAlt} />
-            <span className="tooltip">Logout</span>
-          </li>
-        </Link>
+        <li onClick={handleLogout}>
+          <FontAwesomeIcon icon={faSignOutAlt} />
+          <span className="tooltip">Logout</span>
+        </li>
       </ul>
     </nav>
   );

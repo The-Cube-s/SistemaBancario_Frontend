@@ -59,8 +59,9 @@ const DeleteModal = ({ isOpen, onRequestClose, itemName = '', onDelete }) => {
       style={customStyles}
     >
       <ModalContent>
-        <h2>¿Seguro de eliminar el producto {itemName}?</h2>
+        <h2>¿Seguro de eliminar a {itemName}?</h2>
         <p>No se podrá dar marcha atrás</p>
+        {/* Aqui se deberia implementar el Onclick del backend*/}
         <DeleteButton onClick={onDelete}>Sí, eliminar</DeleteButton>
         <CancelButton onClick={onRequestClose}>Cancelar</CancelButton>
       </ModalContent>

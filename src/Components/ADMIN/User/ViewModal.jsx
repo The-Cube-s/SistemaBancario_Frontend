@@ -49,12 +49,15 @@ const ViewModal = ({ isOpen, onRequestClose, user = {} }) => {
         <h2>Información del Usuario</h2>
         {user ? (
           <>
-            {/* Info que mostrara o extraera de la page de User*/}
+            {/* Info que mostrara o extraera de la page de User (es automatico osea que solo puedes colocar lo que quieras y ya)*/}
             <p><strong>Nombre:</strong> {user.name}</p>
             <p><strong>Nombre de usuario:</strong> {user.username}</p>
             <p><strong>DPI:</strong> {user.DPI}</p>
+            <p><strong>email:</strong> {user.email}</p>
+            <p><strong>address:</strong> {user.address}</p>
             <p><strong>Teléfono:</strong> {user.phone}</p>
             <p><strong>Trabajo:</strong> {user.jobname}</p>
+            <p><strong>Base Salary:</strong> Q{user.monthlyincome}</p>
           </>
         ) : (
           /* Por si no hay datos el fetching mostrara loading*/

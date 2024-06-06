@@ -62,3 +62,12 @@ export const watchUsersRequest = async()=>{
         }
     }
 }
+
+export const productsRequest = async()=>{
+    try{
+        return await apiClient.get('/product/getProducts')
+    }catch(err){
+        error: true,
+        err
+    }
+}

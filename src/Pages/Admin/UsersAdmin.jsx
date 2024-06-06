@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useUsers } from '../../Shared/Hooks/Admin/useUsers';
+//Importaremos los componentes para hacer overlays 
+import ViewModal from '../../Components/ADMIN/User/ViewModal';
+import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
+
+
 
 const UsersAdminContainer = styled.div`
   padding: 20px;
@@ -104,6 +109,11 @@ export const UsersAdmin = () => {
     const { users, getUsers, isFetching } = useUsers();
     const [query, setQuery] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [modalState, setModalState] = useState({
+      isDeleteOpen: false,
+      isViewOpen: false,
+      selectedUser: null,
+    });
 
     useEffect(() => {
         getUsers();
@@ -120,6 +130,27 @@ export const UsersAdmin = () => {
             );
         }
     }, [query, users]);
+
+    const openModal = (type, user) => {
+      setModalState({
+        ...modalState,
+        [`is${type}Open`]: true,
+        selectedUser: user,
+      });
+    };
+
+    const closeModal = (type) => {
+      setModalState({
+        ...modalState,
+        [`is${type}Open`]: false,
+        selectedUser: null,
+      });
+    };
+
+    const handleDelete = () => {
+      // Implementar la lógica de eliminación aquí
+      closeModal('Delete');
+    };
 
     if (isFetching) {
         return <div>Loading...</div>;
@@ -153,9 +184,8 @@ export const UsersAdmin = () => {
                             <Td>{user.phone}</Td>
                             <Td>{user.jobname}</Td>
                             <Td>
-                                <Button>View</Button>
-                                <Button>Edit</Button>
-                                <Button>Delete</Button>
+                                <Button onClick={() => openModal('View', user)}>View</Button>
+                                <Button onClick={() => openModal('Delete', user)}>Delete</Button>
                             </Td>
                         </tr>
                     ))}
@@ -169,6 +199,17 @@ export const UsersAdmin = () => {
                 <span>4</span>
                 <span>5</span>
             </Pagination>
+            <DeleteModal
+              isOpen={modalState.isDeleteOpen}
+              onRequestClose={() => closeModal('Delete')}
+              itemName={modalState.selectedUser?.name}
+              onDelete={handleDelete}
+            />
+            <ViewModal
+              isOpen={modalState.isViewOpen}
+              onRequestClose={() => closeModal('View')}
+              user={modalState.selectedUser}
+            />
         </UsersAdminContainer>
     );
 };

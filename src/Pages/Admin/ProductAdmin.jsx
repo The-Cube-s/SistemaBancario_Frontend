@@ -198,13 +198,13 @@ export const ProductAdmin = () => {
             <DeleteModal
               isOpen={modalState.isDeleteOpen}
               onRequestClose={() => closeModal('Delete')}
-              itemName={modalState.selectedUser?.name}
+              itemName={modalState.selectedProduct?.name}
               onDelete={handleDelete}
             />
             <ViewProduct
               isOpen={modalState.isViewOpen}
               onRequestClose={() => closeModal('View')}
-              user={modalState.selectedUser}
+              product={modalState.selectedProduct} // Corregido aquí
             />
         </UsersAdminContainer>
     );

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useUsers } from '../../Shared/Hooks/Admin/useUsers';
-//Importaremos los componentes para hacer overlays 
 import ViewModal from '../../Components/ADMIN/User/ViewModal';
 import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
-
-
 
 const UsersAdminContainer = styled.div`
   padding: 20px;
@@ -132,6 +129,7 @@ export const UsersAdmin = () => {
     }, [query, users]);
 
     const openModal = (type, user) => {
+      console.log("Opening modal for user: ", user); // Depuración
       setModalState({
         ...modalState,
         [`is${type}Open`]: true,
@@ -147,9 +145,9 @@ export const UsersAdmin = () => {
       });
     };
 
-    const handleDelete = () => {
-      // Implementar la lógica de eliminación aquí
-      closeModal('Delete');
+    const handleDeleteSuccess = () => {
+      const updatedUsers = filteredUsers.filter(user => user._id !== modalState.selectedUser._id);
+      setFilteredUsers(updatedUsers);
     };
 
     if (isFetching) {
@@ -176,8 +174,8 @@ export const UsersAdmin = () => {
                     </tr>
                 </Thead>
                 <Tbody>
-                    {filteredUsers.map((user, index) => (
-                        <tr key={user.id}>
+                    {filteredUsers.map((user) => (
+                        <tr key={user._id}> {/* Asegúrate de usar _id si estás usando MongoDB */}
                             <Td>{user.name}</Td>
                             <Td>{user.username}</Td>
                             <Td>{user.DPI}</Td>
@@ -192,7 +190,6 @@ export const UsersAdmin = () => {
                 </Tbody>
             </Table>
             <Pagination>
-                {/* Por si hay muchos usuarios (el 1ero es el por defecto)*/}
                 <span className="active">1</span>
                 <span>2</span>
                 <span>3</span>
@@ -203,7 +200,9 @@ export const UsersAdmin = () => {
               isOpen={modalState.isDeleteOpen}
               onRequestClose={() => closeModal('Delete')}
               itemName={modalState.selectedUser?.name}
-              onDelete={handleDelete}
+              // Aqui se extrae el id
+              userId={modalState.selectedUser?._id} 
+              onDeleteSuccess={handleDeleteSuccess}
             />
             <ViewModal
               isOpen={modalState.isViewOpen}

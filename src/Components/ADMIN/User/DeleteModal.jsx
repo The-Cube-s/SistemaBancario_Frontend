@@ -1,8 +1,10 @@
 import React from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
+import { useDeleteUser } from '../../../Shared/Hooks/Admin/useDeleteUser';
+import { toast } from 'react-hot-toast';
 
-//Estilado del div del overlay
+// Estilado del div del overlay
 const customStyles = {
   content: {
     top: '50%',
@@ -21,7 +23,7 @@ const customStyles = {
   },
 };
 
-//Contenido del modal (osea del cuadro)
+// Contenido del modal (osea del cuadro)
 const ModalContent = styled.div`
   padding: 20px;
   text-align: center;
@@ -29,7 +31,7 @@ const ModalContent = styled.div`
   background-color: #fff;
 `;
 
-//Botones que estaran dentro del modal
+// Botones que estarán dentro del modal
 const Button = styled.button`
   padding: 10px 20px;
   margin: 10px;
@@ -49,8 +51,20 @@ const CancelButton = styled(Button)`
   color: white;
 `;
 
-//Aqui solo es simple vista de un tutorial, no tiene funcionalidad
-const DeleteModal = ({ isOpen, onRequestClose, itemName = '', onDelete }) => {
+// Componente DeleteModal
+const DeleteModal = ({ isOpen, onRequestClose, itemName = '', userId, onDeleteSuccess }) => {
+  const { deleteUser } = useDeleteUser();
+
+  const handleDelete = async () => {
+    console.log("User ID to delete: ", userId); // Depuración
+    if (!userId) {
+      return toast.error('No user ID provided.');
+    }
+    await deleteUser(userId);
+    onDeleteSuccess(); // Llama a una función de éxito (puede ser para cerrar el modal o refrescar la lista)
+    onRequestClose(); // Cierra el modal
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -61,8 +75,7 @@ const DeleteModal = ({ isOpen, onRequestClose, itemName = '', onDelete }) => {
       <ModalContent>
         <h2>¿Seguro de eliminar a {itemName}?</h2>
         <p>No se podrá dar marcha atrás</p>
-        {/* Aqui se deberia implementar el Onclick del backend*/}
-        <DeleteButton onClick={onDelete}>Sí, eliminar</DeleteButton>
+        <DeleteButton onClick={handleDelete}>Sí, eliminar</DeleteButton>
         <CancelButton onClick={onRequestClose}>Cancelar</CancelButton>
       </ModalContent>
     </Modal>

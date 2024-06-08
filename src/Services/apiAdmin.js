@@ -30,17 +30,6 @@ export const loginRequest = async(user)=>{
     }
 }
 
-export const registerRequest = async(user)=>{
-    try {
-        return await apiClient.post('/user/register', user)
-    } catch (err) {
-        return {
-            error: true,
-            err
-        }
-    }
-}
-
 export const testRequest = async()=>{
     try {
         return await apiClient.get('/user/test')
@@ -75,6 +64,40 @@ export const productsRequest = async()=>{
 export const deleteUserRequest = async (id) => {
     try {
         return await apiClient.delete(`user/deleteUser/${id}`)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+//Parte de agregar usuarios, cuentas y productos
+export const registerRequest = async(user)=>{
+    try {
+        return await apiClient.post('/user/register', user)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const addProductRequest = async(product)=>{
+    try {
+        return await apiClient.post('/product/saveProduct', product)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const addAccountRequest = async(account)=>{
+    try {
+        return await apiClient.post('/account/saveAccount', account)
     } catch (err) {
         return {
             error: true,

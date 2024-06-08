@@ -71,6 +71,18 @@ export const deleteUserRequest = async (id) => {
         }
     }
 }
+//parte de fabricio
+export const accountsRequest = async () => {
+    try {
+        return await apiClient.get('/account/getAccount')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
 
 //Parte de agregar usuarios, cuentas y productos
 export const registerRequest = async(user)=>{
@@ -105,3 +117,4 @@ export const addAccountRequest = async(account)=>{
         }
     }
 }
+

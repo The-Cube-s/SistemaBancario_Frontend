@@ -177,7 +177,7 @@ export const AccountAdmin = () => {
         </Thead>
         <Tbody>
           {filteredAccounts.map((account) => (
-            <tr key={account._id}> {/* Asegúrate de usar _id si estás usando MongoDB */}
+            <tr key={account._id}> {/* Asegurarse que el user _id se este usando correctamente en la base de datos */}
               <Td>{account.noaccount}</Td>
               <Td>{account.balance}</Td>
               <Td>{account.typeofaccount}</Td>
@@ -200,7 +200,7 @@ export const AccountAdmin = () => {
       <DeleteModal
         isOpen={modalState.isDeleteOpen}
         onRequestClose={() => closeModal('Delete')}
-        itemName={modalState.selectedAccount?.noaccount}
+        itemName={modalState.selectedAccount?.noaccount}//Se coloco el noaccount para dar referencia a la cuenta que va eliminar 
         onDelete={handleDelete}
       />
       <ViewAccount

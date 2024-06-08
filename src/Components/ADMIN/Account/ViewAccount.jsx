@@ -65,3 +65,5 @@ const ViewAccount = ({ isOpen, onRequestClose, account = {} }) => {
 };
 
 export default ViewAccount;
+
+//Se implemento esto jeje

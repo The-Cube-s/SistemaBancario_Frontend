@@ -174,3 +174,4 @@ const Message = styled.p`
   text-align: center;
   margin-top: 20px;
 `;
+

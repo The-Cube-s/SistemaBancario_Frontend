@@ -106,3 +106,14 @@ export const deleteUserRequest = async (id) => {
         }
     }
 }
+
+export const deleteUserRequest = async (id) => {
+    try {
+        return await apiClient.delete(`user/deleteUser/${id}`)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}

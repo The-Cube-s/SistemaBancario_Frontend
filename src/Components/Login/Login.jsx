@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useLogin } from "../../Shared/Hooks/Login and Register/useLogin";
 import styled from "styled-components";
 
@@ -174,4 +174,3 @@ const Message = styled.p`
   text-align: center;
   margin-top: 20px;
 `;
-

@@ -115,12 +115,11 @@ export const AccountAdmin = () => {
   });
 
   useEffect(() => {
-    getAccount();
+    getAccount ();
   }, []);
 
   useEffect(() => {
     if (accounts) {
-      console.log('Accounts:', accounts); // Depuración
       setFilteredAccounts(
         accounts.filter(account =>
           Object.values(account).some(value =>

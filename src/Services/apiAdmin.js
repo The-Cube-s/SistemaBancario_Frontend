@@ -74,6 +74,17 @@ export const productsRequest = async () => {
     }
 }
 
+export const getAccount = async()=>{
+    try{
+        return await apiClient.get('/account/getAccount')
+    }catch(err){
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
 export const accountsRequest = async () => {
     try {
         return await apiClient.get('/account/getAccount')

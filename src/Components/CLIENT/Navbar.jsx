@@ -10,10 +10,15 @@ const NavbarContainer = styled.nav`
   align-items: center;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   color: #fff;
   font-size: 24px;
   font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    color: #adb5bd;
+  }
 `;
 
 const NavLinks = styled.div`
@@ -30,18 +35,18 @@ const NavLink = styled(Link)`
     color: #adb5bd;
   }
 `;
- 
+
 export const Navbar = () => {
-    return (
-        <NavbarContainer>
-          <Logo>Banco</Logo>
-          <NavLinks>
-            <NavLink to="/cuentas">Cuentas</NavLink>
-            <NavLink to="/transferencias">Transferencias</NavLink>
-            <NavLink to="/creditos">Créditos</NavLink>
-            <NavLink to="/depositos">Depósitos</NavLink>
-            <NavLink to="/productos">Productos</NavLink>
-          </NavLinks>
-        </NavbarContainer>
-      );
-    };
+  return (
+    <NavbarContainer>
+      <Logo to="/home/banco">Banco</Logo>
+      <NavLinks>
+        <NavLink to="/home/banco/accountClient">Cuentas</NavLink>
+        <NavLink to="/home/banco/transferencias">Transferencias</NavLink>
+        <NavLink to="/home/banco/creditos">Créditos</NavLink>
+        <NavLink to="/home/banco/depositos">Depósitos</NavLink>
+        <NavLink to="/home/banco/products">Productos</NavLink>
+      </NavLinks>
+    </NavbarContainer>
+  );
+};

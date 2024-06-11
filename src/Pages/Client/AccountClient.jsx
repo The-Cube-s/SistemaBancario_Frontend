@@ -1,6 +1,7 @@
+import React from 'react';
 import { Navbar } from '../../Components/CLIENT/Navbar'; 
 
-export const HomeClient = () => {
+export const AccountClient = () => {
   return (
     <>
       <Navbar />

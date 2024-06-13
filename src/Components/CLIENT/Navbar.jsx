@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import 'boxicons/css/boxicons.min.css';
 
 const NavbarContainer = styled.nav`
   background-color: #343a40;
@@ -36,6 +37,11 @@ const NavLink = styled(Link)`
   }
 `;
 
+const IconLink = styled(NavLink)`
+  font-size: 24px;  
+  margin-left: 20px;  
+`;
+
 export const Navbar = () => {
   return (
     <NavbarContainer>
@@ -43,9 +49,9 @@ export const Navbar = () => {
       <NavLinks>
         <NavLink to="/home/banco/accountClient">Cuentas</NavLink>
         <NavLink to="/home/banco/transferencias">Transferencias</NavLink>
-        <NavLink to="/home/banco/creditos">Créditos</NavLink>
-        <NavLink to="/home/banco/depositos">Depósitos</NavLink>
+        <NavLink to="/home/banco/historial">Historial</NavLink>
         <NavLink to="/home/banco/products">Productos</NavLink>
+        <IconLink to="/home/banco/settings" className="bx bx-user-circle"></IconLink>
       </NavLinks>
     </NavbarContainer>
   );

@@ -16,6 +16,7 @@ import { RegisterAdmin } from "./Pages/Admin/RegisterAdmin";
 import { HomeClient } from "./Pages/Client/HomeClient";
 import { AccountClient } from "./Pages/Client/AccountClient";
 import { TransferenciasClient } from "./Pages/Client/TransferenciasClient";
+import { Historial } from "./Pages/Client/Historial";
 
 export const routes = [
   {
@@ -70,6 +71,10 @@ export const routes = [
   {
     path: '/home/banco/transferencias',
     element: <NavbarLayout><TransferenciasClient /></NavbarLayout>
+  },
+  {
+    path: '/home/banco/historial',
+    element: <NavbarLayout><Historial /></NavbarLayout>
   }
 ]
 

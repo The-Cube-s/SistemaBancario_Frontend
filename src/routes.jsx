@@ -2,7 +2,7 @@ import App from "./App";
 import { ContentRole } from "./Shared/ContentRole";
 import { NotFoundPage } from "./Pages/NotFound/NotFoundPage";
 import Layout from "./Components/ADMIN/Layout";
-import LayoutClient from "./Components/CLIENT/LayoutClient";
+import NavbarLayout from "./Components/CLIENT/NavbarLayout";
 
 //importar rutas de cliente 
 
@@ -15,6 +15,7 @@ import { RegisterAdmin } from "./Pages/Admin/RegisterAdmin";
 //importar lo del cliente
 import { HomeClient } from "./Pages/Client/HomeClient";
 import { AccountClient } from "./Pages/Client/AccountClient";
+import { TransferenciasClient } from "./Pages/Client/TransferenciasClient";
 
 export const routes = [
   {
@@ -55,15 +56,20 @@ export const routes = [
   {
     path: '/home/banco/register',
     element: <Layout><RegisterAdmin /></Layout>
-  },
-  // Ruta de Clientes
+  },  
+  // Rutas de cliente 
+  // Rutas de cliente 
   {
     path: '/home/banco/home',
-    element: <LayoutClient><HomeClient /></LayoutClient>
-},
-{
+    element: <NavbarLayout><HomeClient /></NavbarLayout>
+  },
+  {
     path: '/home/banco/accountClient',
-    element: <LayoutClient><AccountClient /></LayoutClient>
-}
+    element: <NavbarLayout><AccountClient /></NavbarLayout>
+  },
+  {
+    path: '/home/banco/transferencias',
+    element: <NavbarLayout><TransferenciasClient /></NavbarLayout>
+  }
 ]
 

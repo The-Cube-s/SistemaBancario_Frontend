@@ -4,7 +4,7 @@ import { NotFoundPage } from '../Pages/NotFound/NotFoundPage';
 //Admin pages
 import { UsersAdmin } from '../Pages/Admin/UsersAdmin';
 import Layout from '../Components/ADMIN/Layout';
-import LayoutClient from '../Components/CLIENT/LayoutClient';
+import NavbarLayout from '../Components/CLIENT/NavbarLayout';
 
 
 
@@ -19,7 +19,7 @@ export const ContentRole = () => {
         {role === 'ADMIN' ? (
           <Route path="banco" element={<Layout><UsersAdmin /></Layout>} />
         ) : role === 'CLIENT' ? (
-          <Route path="banco" element={<HomeClient/>} />          
+          <Route path="banco" element={<NavbarLayout><HomeClient/></NavbarLayout>} />          
         ) : (
           // Manejar otros roles o un rol desconocido mostrando una página de NotFoundPage
           <Route path="*" element={<NotFoundPage />} />

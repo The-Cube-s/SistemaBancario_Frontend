@@ -1,6 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const NavbarContainer = styled.nav`
   background-color: #343a40;
@@ -8,6 +7,7 @@ const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;  /* Asegura que el navbar ocupe todo el ancho del contenedor */
 `;
 
 const Logo = styled(Link)`

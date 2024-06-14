@@ -18,6 +18,7 @@ import { AccountClient } from "./Pages/Client/AccountClient";
 import { TransferenciasClient } from "./Pages/Client/TransferenciasClient";
 import { Historial } from "./Pages/Client/Historial";
 import { ProductClient } from "./Pages/Client/ProductClient";
+import { EditProfile } from "./Pages/Client/EditProfile";
 
 export const routes = [
   {
@@ -80,6 +81,10 @@ export const routes = [
   {
     path: '/home/banco/productsClient',
     element: <NavbarLayout><ProductClient /></NavbarLayout>
+  },
+  {
+    path: '/home/banco/editProfile',
+    element: <NavbarLayout><EditProfile /></NavbarLayout>
   }
 ]
 

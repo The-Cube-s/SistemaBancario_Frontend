@@ -5,6 +5,7 @@ import 'boxicons/css/boxicons.min.css';
 
 import { useUserDetails } from '../../Shared/Hooks/useUserDetails';
 
+
 const NavbarContainer = styled.nav`
   background-color: #343a40;
   padding: 10px 20px;
@@ -104,7 +105,7 @@ export const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <Logo to="/home/banco">Banco</Logo>
+      <Logo to="/home/banco">Bancubito</Logo>
       <NavLinks>
         <NavLink to="/home/banco/accountClient">Cuentas</NavLink>
         <NavLink to="/home/banco/transferencias">Transferencias</NavLink>

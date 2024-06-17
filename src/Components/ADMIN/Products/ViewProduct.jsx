@@ -66,9 +66,9 @@ const ViewProduct = ({ isOpen, onRequestClose, product }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} ariaHideApp={false} style={customStyles}>
       <ModalContent>
-        <h2>{product.name}</h2>
-        <p>{product.description}</p>
-        <p>Price: ${product.price}</p>
+        <h2>Nombre: {product.name}</h2>
+        <p>Descripción: {product.description}</p>
+        <p>Precio: Q{product.price}</p>
         {product.imagesProduct && product.imagesProduct.length > 0 && (
           <ImageContainer>
             <Image src={`http://localhost:2656${product.imagesProduct[0]}`} alt={product.name} />

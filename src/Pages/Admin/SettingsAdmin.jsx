@@ -2,6 +2,7 @@ import { useState} from 'react';
 import styled from 'styled-components';
 //agregar componentes
 import { RegistProduct } from '../../Components/Register/RegistProduct';
+import { Deposit } from '../../Components/ADMIN/Deposits/Deposit';
 
 const SettingsAdminContainer = styled.div`
   display: flex;
@@ -84,7 +85,7 @@ export const SettingsAdmin = () => {
           <SectionContent>
             <BackButton onClick={handleBackClick}>Regresar</BackButton>
             {activeSection === 'transferencias' && <div>Contenido de Transferencias</div>}
-            {activeSection === 'depositos' && <div>Contenido de Depósitos</div>}
+            {activeSection === 'depositos' && < Deposit /> }
             {activeSection === 'saldos-creditos' && <div>Contenido de Saldos y Créditos</div>}
             {activeSection === 'producto' && <RegistProduct />}
             {activeSection === 'cuenta' && <div>Contenido de cuenta</div>}

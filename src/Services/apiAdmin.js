@@ -11,7 +11,7 @@ apiClient.interceptors.request.use(
         if (userDetails) {
             const token = JSON.parse(userDetails)
             config.headers.Authorization = `${token}`
-            
+
         }
         return config
     },
@@ -19,7 +19,7 @@ apiClient.interceptors.request.use(
 )
 
 //Este es un api general pero lo pongo aqui por comodidad
-export const loginRequest = async(user)=>{
+export const loginRequest = async (user) => {
     try {
         return await apiClient.post('/user/login', user)
     } catch (err) {
@@ -30,7 +30,22 @@ export const loginRequest = async(user)=>{
     }
 }
 
+<<<<<<< HEAD
 export const testRequest = async()=>{
+=======
+export const registerRequest = async (user) => {
+    try {
+        return await apiClient.post('/user/register', user)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const testRequest = async () => {
+>>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
     try {
         return await apiClient.get('/user/test')
     } catch (err) {
@@ -41,7 +56,7 @@ export const testRequest = async()=>{
     }
 }
 
-export const watchUsersRequest = async()=>{
+export const watchUsersRequest = async () => {
     try {
         return await apiClient.get('/user/getUser')
     } catch (err) {
@@ -52,12 +67,47 @@ export const watchUsersRequest = async()=>{
     }
 }
 
-export const productsRequest = async()=>{
-    try{
+export const productsRequest = async () => {
+    try {
         return await apiClient.get('/product/getProducts')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const getAccount = async()=>{
+    try{
+        return await apiClient.get('/account/getAccount')
     }catch(err){
-        error: true,
-        err
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const accountsRequest = async () => {
+    try {
+        return await apiClient.get('/account/getAccount')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const deleteUserRequest = async (id) => {
+    try {
+        return await apiClient.delete(`user/deleteUser/${id}`)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
     }
 }
 

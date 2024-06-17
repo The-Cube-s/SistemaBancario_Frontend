@@ -115,12 +115,19 @@ export const AccountAdmin = () => {
   });
 
   useEffect(() => {
+<<<<<<< HEAD
     getAccount();
+=======
+    getAccount ();
+>>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
   }, []);
 
   useEffect(() => {
     if (accounts) {
+<<<<<<< HEAD
       console.log('Accounts:', accounts); // Depuración
+=======
+>>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
       setFilteredAccounts(
         accounts.filter(account =>
           Object.values(account).some(value =>

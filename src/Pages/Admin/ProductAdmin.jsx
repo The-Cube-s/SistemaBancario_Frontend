@@ -175,7 +175,7 @@ export const ProductAdmin = () => {
                 </Thead>
                 <Tbody>
                     {filteredProducts.map((product, index) => (
-                        <tr key={product.id}>
+                        <tr key={product._id}>
                             <Td>{product.name}</Td>
                             <Td>{product.description}</Td>
                             <Td>{product.price}</Td>

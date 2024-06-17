@@ -37,29 +37,44 @@ const Button = styled.button`
   color: white;
 `;
 
-const ViewProduct = ({ isOpen, onRequestClose, product = {} }) => {
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+`;
+
+const Image = styled.img`
+  max-width: 300px; // Tamaño máximo de la imagen
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const CloseButton = styled(Button)`
+  background-color: #007bff;
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const ViewProduct = ({ isOpen, onRequestClose, product }) => {
+  if (!product) {
+    return null;
+  }
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      ariaHideApp={false}
-      style={customStyles}
-    >
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} ariaHideApp={false} style={customStyles}>
       <ModalContent>
-        <h2>Información del Producto</h2>
-        {product ? (
-          <>
-            {/* Info que mostrara o extraera de la page de User (es automatico osea que solo puedes colocar lo que quieras y ya)*/}
-            <p><strong>Nombre:</strong> {product.name}</p>
-            <p><strong>Description:</strong> {product.description}</p>
-            <p><strong>Price:</strong> {product.price}</p>
-            
-          </>
-        ) : (
-          /* Por si no hay datos el fetching mostrara loading*/
-          <p>Loading...</p>
+        <h2>{product.name}</h2>
+        <p>{product.description}</p>
+        <p>Price: ${product.price}</p>
+        {product.imagesProduct && product.imagesProduct.length > 0 && (
+          <ImageContainer>
+            <Image src={`http://localhost:2656${product.imagesProduct[0]}`} alt={product.name} />
+          </ImageContainer>
         )}
-        <Button onClick={onRequestClose}>Cerrar</Button>
+        <CloseButton onClick={onRequestClose}>Close</CloseButton>
       </ModalContent>
     </Modal>
   );

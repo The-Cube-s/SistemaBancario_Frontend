@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAccounts } from '../../Shared/Hooks/Admin/useAccounts';
 import ViewAccount from '../../Components/ADMIN/Account/ViewAccount';
-import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
+import DeleteAccount from '../../Components/ADMIN/Account/DeleteAccount';
 
 const AccountAdminContainer = styled.div`
   padding: 20px;
@@ -115,19 +115,12 @@ export const AccountAdmin = () => {
   });
 
   useEffect(() => {
-<<<<<<< HEAD
     getAccount();
-=======
-    getAccount ();
->>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
   }, []);
 
   useEffect(() => {
     if (accounts) {
-<<<<<<< HEAD
       console.log('Accounts:', accounts); // Depuración
-=======
->>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
       setFilteredAccounts(
         accounts.filter(account =>
           Object.values(account).some(value =>
@@ -155,9 +148,9 @@ export const AccountAdmin = () => {
     });
   };
 
-  const handleDelete = () => {
-    // Implementar la lógica de eliminación aquí
-    closeModal('Delete');
+  const handleDeleteSuccess = () => {
+    const updatedAccounts = filteredAccounts.filter(account => account._id !== modalState.selectedAccount._id);
+    setFilteredAccounts(updatedAccounts);
   };
 
   if (isFetching) {
@@ -204,11 +197,13 @@ export const AccountAdmin = () => {
         <span>4</span>
         <span>5</span>
       </Pagination>
-      <DeleteModal
+      <DeleteAccount
         isOpen={modalState.isDeleteOpen}
         onRequestClose={() => closeModal('Delete')}
         itemName={modalState.selectedAccount?.noaccount}//Se coloco el noaccount para dar referencia a la cuenta que va eliminar 
-        onDelete={handleDelete}
+        // Aqui se extrae el id
+        accountId={modalState.selectedAccount?._id} 
+        onDeleteSuccess={handleDeleteSuccess}
       />
       <ViewAccount
         isOpen={modalState.isViewOpen}

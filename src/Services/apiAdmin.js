@@ -30,22 +30,7 @@ export const loginRequest = async (user) => {
     }
 }
 
-<<<<<<< HEAD
 export const testRequest = async()=>{
-=======
-export const registerRequest = async (user) => {
-    try {
-        return await apiClient.post('/user/register', user)
-    } catch (err) {
-        return {
-            error: true,
-            err
-        }
-    }
-}
-
-export const testRequest = async () => {
->>>>>>> 2233372f38a746db2f6406dca0dc22c00c9086e2
     try {
         return await apiClient.get('/user/test')
     } catch (err) {
@@ -89,16 +74,6 @@ export const getAccount = async()=>{
     }
 }
 
-export const accountsRequest = async () => {
-    try {
-        return await apiClient.get('/account/getAccount')
-    } catch (err) {
-        return {
-            error: true,
-            err
-        }
-    }
-}
 
 export const deleteUserRequest = async (id) => {
     try {
@@ -110,17 +85,31 @@ export const deleteUserRequest = async (id) => {
         }
     }
 }
-
-export const deleteUserRequest = async (id) => {
+///----------------------Parte Fabricciooooooo XD-----------
+//Parte de fabricio 
+export const deleteAccountRequest = async (id) => {
     try {
-        return await apiClient.delete(`user/deleteUser/${id}`)
+      return await apiClient.delete(`account/deleteAccount/${id}`);
     } catch (err) {
+      return {
+        error: true,
+        err
+      };
+    }
+};
+
+export const deleteProductRequest = async (id) =>{
+    try{
+        return await apiClient.delete(`product/deleteProduct/${id}`);
+    }catch(err){
         return {
             error: true,
             err
         }
     }
 }
+
+
 //parte de fabricio
 export const accountsRequest = async () => {
     try {

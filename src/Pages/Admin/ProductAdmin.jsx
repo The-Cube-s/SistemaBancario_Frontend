@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useProducts } from '../../Shared/Hooks/Admin/useProducts'; 
 //Importaremos los componentes para hacer overlays 
 import ViewProduct from '../../Components/ADMIN/Products/ViewProduct';
-import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
+import DeleteProduct from '../../Components/ADMIN/Products/DeleteProduct';
 
 
 
@@ -132,6 +132,7 @@ export const ProductAdmin = () => {
     }, [query, products]);
 
     const openModal = (type, product) => {
+      console.log("Opening modal for user: ", product); // Depuración
       setModalState({
         ...modalState,
         [`is${type}Open`]: true,
@@ -147,9 +148,9 @@ export const ProductAdmin = () => {
       });
     };
 
-    const handleDelete = () => {
-      // Implementar la lógica de eliminación aquí
-      closeModal('Delete');
+    const handleDeleteSuccess = () => {
+      const updatedProduct = filteredProducts.filter(product => product._id !== modalState.selectedProduct._id);
+      setFilteredProducts(updatedProduct);
     };
 
     if (isFetching) {
@@ -158,7 +159,7 @@ export const ProductAdmin = () => {
 
     return (
         <UsersAdminContainer>
-            <Title>User Management</Title>
+            <Title>Product Management</Title>
             <SearchBar
                 type="text"
                 placeholder="Search user by name, description, price"
@@ -175,7 +176,7 @@ export const ProductAdmin = () => {
                 </Thead>
                 <Tbody>
                     {filteredProducts.map((product, index) => (
-                        <tr key={product._id}>
+                        <tr key={product.id}>
                             <Td>{product.name}</Td>
                             <Td>{product.description}</Td>
                             <Td>{product.price}</Td>
@@ -195,11 +196,13 @@ export const ProductAdmin = () => {
                 <span>4</span>
                 <span>5</span>
             </Pagination>
-            <DeleteModal
+            <DeleteProduct
               isOpen={modalState.isDeleteOpen}
               onRequestClose={() => closeModal('Delete')}
               itemName={modalState.selectedProduct?.name}
-              onDelete={handleDelete}
+              // Aqui se extrae el id
+              productId={modalState.selectedProduct?._id} 
+              onDeleteSuccess={handleDeleteSuccess}
             />
             <ViewProduct
               isOpen={modalState.isViewOpen}

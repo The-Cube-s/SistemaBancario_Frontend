@@ -123,7 +123,9 @@ const SupportContent = () => (
 
 export const EditProfile = () => {
   const [activeTab, setActiveTab] = useState('Pedidos');
-  const { logoutSys } = useUserDetails(); 
+  const { logoutSys, name } = useUserDetails(); 
+
+  
 
   const handleLogout = () => {
     logoutSys();
@@ -154,7 +156,7 @@ export const EditProfile = () => {
         <ProfileSidebar md={3}>
           <ProfileHeader>
             <ProfileImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-cskA2FbOzFi7ACNiGruheINgAXEqFL1TQ&s" alt="Profile" />
-            <ProfileName>Santiago González</ProfileName>
+            <ProfileName>Hola, {name}</ProfileName>
             <ProfileEmail>papide-estrada@gmail.com</ProfileEmail>
           </ProfileHeader>
           <SidebarMenu>

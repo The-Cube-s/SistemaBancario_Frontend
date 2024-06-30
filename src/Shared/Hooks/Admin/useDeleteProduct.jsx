@@ -1,15 +1,15 @@
-import toast from 'react-hot-toast';
-import { deleteAccountRequest } from '../../../Services/apiAdmin';
+import toast from 'react-hot-toast'
+import { deleteProductRequest } from '../../../Services/apiAdmin'
 
-export const useDeleteAccount = () => {
-  const deleteAccount = async (id) => {
-    const response = await deleteAccountRequest(id);
-    if (response.error) {
-      return toast.error('Error deleting account.');
+export const useDeleteProduct = () => {
+    const deleteProduct = async (id) => {
+        const response = await deleteProductRequest(id)
+        if (response.error) {
+            return toast.error('Error deleting Product.')
+        }
+        return toast.success('Deleted Product succesfully.')
     }
-    return toast.success('Deleted account successfully.');
-  };
-  return {
-    deleteAccount
-  };
-};
+    return {
+        deleteProduct
+    }
+}

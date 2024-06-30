@@ -1,8 +1,7 @@
-import React from "react";
-import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import styled from "styled-components";
-// Importar imágenes
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Button, Modal, Carousel } from 'react-bootstrap';
+import styled from 'styled-components';
+import { useProducts } from '../../Shared/Hooks/Admin/useProducts'; 
 import Fondo from "../../assets/Fondo.jpg";
 import Logo1 from "../../assets/Logo-Fetiche.png";
 import Logo2 from "../../assets/Logo-Velvet.png";
@@ -12,14 +11,40 @@ import Logo5 from "../../assets/Logo-Macdonals.png";
 import Logo6 from "../../assets/Logo-LamediaCancha.png";
 import Logo7 from "../../assets/Logo-Kinal.png";
 import Logo8 from "../../assets/Logo-Estancia.png";
-
-// Nuevas imágenes de la sección de ayuda
 import HelpCenterIcon from "../../assets/Logo-signo.svg";
 import WhatsAppIcon from "../../assets/Logo-ViaWatsapp.svg";
 import CustomerServiceIcon from "../../assets/Logo-Telefono.svg";
 import LogoBanco from "../../assets/Logo-Banco.png";
 
 export const ProductClient = () => {
+  const { products, getProducts, isFetching } = useProducts();
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    selectedProduct: null,
+  });
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const openModal = (product) => {
+    setModalState({
+      isOpen: true,
+      selectedProduct: product,
+    });
+  };
+
+  const closeModal = () => {
+    setModalState({
+      isOpen: false,
+      selectedProduct: null,
+    });
+  };
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <FullWidthContainer>
@@ -37,12 +62,9 @@ export const ProductClient = () => {
 
       <StyledContainer fluid>
         <PromotionsSection>
-          <PromotionsTitle>
-            Descubre las promociones del mes de Junio
-          </PromotionsTitle>
+          <PromotionsTitle>Descubre las promociones del mes de Junio</PromotionsTitle>
           <PromotionsText>
-            En junio aprovecha las promociones con tus tarjetas de crédito y
-            débito en Bancubito S.A
+            En junio aprovecha las promociones con tus tarjetas de crédito y débito en Bancubito S.A
           </PromotionsText>
           <Carousel
             interval={null}
@@ -71,6 +93,52 @@ export const ProductClient = () => {
           </PromotionsText>
         </PromotionsSection>
       </StyledContainer>
+
+      <StyledContainer fluid>
+        <Row>
+          {products.map(product => (
+            <Col key={product._id} md={4}>
+              <Card>
+                <Card.Img variant="top" src={product.imagesProduct[0]} alt={product.name} />
+                <Card.Body>
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>{product.description}</Card.Text>
+                  <Button variant="primary" onClick={() => openModal(product)}>Ver Producto</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </StyledContainer>
+
+      {modalState.selectedProduct && (
+        <Modal show={modalState.isOpen} onHide={closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Información del Producto</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h5>Nombre: {modalState.selectedProduct.name}</h5>
+            <p>Descripción: {modalState.selectedProduct.description}</p>
+            <p>Precio: {modalState.selectedProduct.price}</p>
+            {modalState.selectedProduct.imagesProduct && modalState.selectedProduct.imagesProduct.length > 0 && (
+              <Carousel>
+                {modalState.selectedProduct.imagesProduct.map((image, index) => (
+                  <Carousel.Item key={index}>
+                    <img
+                      className="d-block w-100"
+                      src={image}
+                      alt={`Product image ${index + 1}`}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeModal}>Cerrar</Button>
+          </Modal.Footer>
+        </Modal>
+      )}
 
       <HelpSection>
         <HelpTitle>¿Tienes dudas?</HelpTitle>
@@ -114,10 +182,7 @@ export const ProductClient = () => {
             </Col>
             <Col md={3} className="text-center text-md-right">
               <SocialIcon src="https://via.placeholder.com/30" alt="Facebook" />
-              <SocialIcon
-                src="https://via.placeholder.com/30"
-                alt="Instagram"
-              />
+              <SocialIcon src="https://via.placeholder.com/30" alt="Instagram" />
               <SocialIcon src="https://via.placeholder.com/30" alt="Twitter" />
               <SocialIcon src="https://via.placeholder.com/30" alt="YouTube" />
             </Col>
@@ -139,10 +204,6 @@ export const ProductClient = () => {
   );
 };
 
-const StyledContainer = styled(Container)`
-  padding: 1.5rem; // Ajustar el padding para reducir espacio en blanco
-`;
-
 const FullWidthContainer = styled.div`
   width: 100%;
   margin: 0;
@@ -161,13 +222,13 @@ const InformacionesContent = styled.div`
   color: white;
   @media (max-width: 768px) {
     height: auto;
-    padding: 10px; // Ajustar padding para pantallas pequeñas
+    padding: 10px;
     text-align: center;
   }
 `;
 
 const TextContainer = styled.div`
-  margin-left: 20px; // Reducir margen izquierdo
+  margin-left: 20px;
   max-width: 50%;
   @media (max-width: 768px) {
     margin-left: 0;
@@ -203,14 +264,13 @@ const PromoButton = styled(Button)`
   }
 `;
 
-const OfferImage = styled(Card.Img)`
-  height: 300px;
-  object-fit: cover;
+const StyledContainer = styled(Container)`
+  padding: 1.5rem;
 `;
 
 const PromotionsSection = styled.div`
   text-align: center;
-  padding: 2rem 0; // Ajustar padding
+  padding: 2rem 0;
 `;
 
 const PromotionsTitle = styled.h3`
@@ -220,14 +280,14 @@ const PromotionsTitle = styled.h3`
 
 const PromotionsText = styled.p`
   font-size: 18px;
-  margin-top: 1rem; // Ajustar margen superior
-  margin-bottom: 1rem; // Ajustar margen inferior
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const Logo = styled.img`
   max-width: 150px;
   cursor: pointer;
-  margin: 0 10px; // Reducir margen entre logos
+  margin: 0 10px;
 
   &:hover {
     transform: scale(1.1);
@@ -279,7 +339,6 @@ const CarouselButton = styled(Button)`
   }
 `;
 
-// Nuevos componentes para la sección de ayuda
 const HelpSection = styled.section`
   text-align: center;
   padding: 2rem 0;
@@ -308,10 +367,9 @@ const HelpCard = styled.div`
   padding: 1rem;
   border: 1px solid #dee2e6;
   border-radius: 5px;
-  margin: 0.5rem; // Reducir margen
+  margin: 0.5rem;
 `;
 
-// Footer styles
 const FooterContainer = styled.footer`
   background-color: #f8f9fa;
   padding: 2rem 0;
@@ -339,3 +397,5 @@ const FooterText = styled.p`
   color: #6c757d;
   margin: 0;
 `;
+
+export default ProductClient;

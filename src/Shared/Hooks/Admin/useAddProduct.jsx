@@ -5,7 +5,9 @@ export const useAddProduct = () => {
     const [product, setProduct] = useState({
         name: '',
         description: '',
-        price: ''
+        price: '',
+        amount: '', 
+        imageUrls: [] // Para manejar las URLs de las imágenes
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -19,18 +21,26 @@ export const useAddProduct = () => {
         });
     };
 
+    const handleImageChange = (e) => {
+        const urls = e.target.value.split(',').map(url => url.trim());
+        setProduct({
+            ...product,
+            imageUrls: urls,
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
         setSuccess(false);
 
-        //Por si nos hackean y nos ponen en banca rota jajajajaja
         if (product.price === 0) {
             setError('El precio del producto no puede ser 0');
             setLoading(false);
             return;
         }
+
         try {
             const response = await addProductRequest(product);
             if (response.error) {
@@ -48,6 +58,7 @@ export const useAddProduct = () => {
     return {
         product,
         handleChange,
+        handleImageChange,
         handleSubmit,
         loading,
         error,

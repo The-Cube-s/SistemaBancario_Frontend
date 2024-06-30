@@ -11,7 +11,7 @@ apiClient.interceptors.request.use(
         if (userDetails) {
             const token = JSON.parse(userDetails)
             config.headers.Authorization = `${token}`
-
+            
         }
         return config
     },
@@ -19,7 +19,7 @@ apiClient.interceptors.request.use(
 )
 
 //Este es un api general pero lo pongo aqui por comodidad
-export const loginRequest = async (user) => {
+export const loginRequest = async(user)=>{
     try {
         return await apiClient.post('/user/login', user)
     } catch (err) {
@@ -41,7 +41,7 @@ export const testRequest = async()=>{
     }
 }
 
-export const watchUsersRequest = async () => {
+export const watchUsersRequest = async()=>{
     try {
         return await apiClient.get('/user/getUser')
     } catch (err) {
@@ -52,28 +52,14 @@ export const watchUsersRequest = async () => {
     }
 }
 
-export const productsRequest = async () => {
-    try {
-        return await apiClient.get('/product/getProducts')
-    } catch (err) {
-        return {
-            error: true,
-            err
-        }
-    }
-}
-
-export const getAccount = async()=>{
+export const productsRequest = async()=>{
     try{
-        return await apiClient.get('/account/getAccount')
+        return await apiClient.get('/product/getProducts')
     }catch(err){
-        return {
-            error: true,
-            err
-        }
+        error: true,
+        err
     }
 }
-
 
 export const deleteUserRequest = async (id) => {
     try {
@@ -85,6 +71,7 @@ export const deleteUserRequest = async (id) => {
         }
     }
 }
+
 ///----------------------Parte Fabricciooooooo XD-----------
 //Parte de fabricio 
 export const deleteAccountRequest = async (id) => {
@@ -108,6 +95,7 @@ export const deleteProductRequest = async (id) =>{
         }
     }
 }
+
 
 
 //parte de fabricio
@@ -157,3 +145,13 @@ export const addAccountRequest = async(account)=>{
     }
 }
 
+export const depositRequest = async(deposit)=>{
+    try {
+        return await apiClient.post('/deposit/depositMoney', deposit)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}

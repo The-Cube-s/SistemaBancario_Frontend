@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useProducts } from '../../Shared/Hooks/Admin/useProducts'; 
-//Importaremos los componentes para hacer overlays 
 import ViewProduct from '../../Components/ADMIN/Products/ViewProduct';
 import DeleteProduct from '../../Components/ADMIN/Products/DeleteProduct';
-
-
 
 const UsersAdminContainer = styled.div`
   padding: 20px;
@@ -122,8 +119,8 @@ export const ProductAdmin = () => {
     useEffect(() => {
         if (products) {
           setFilteredProducts(
-                products.filter(products =>
-                    Object.values(products).some(value =>
+                products.filter(product =>
+                    Object.values(product).some(value =>
                         value.toString().toLowerCase().includes(query.toLowerCase())
                     )
                 )
@@ -132,7 +129,7 @@ export const ProductAdmin = () => {
     }, [query, products]);
 
     const openModal = (type, product) => {
-      console.log("Opening modal for user: ", product); // Depuración
+      console.log("Opening modal for product: ", product); // Depuración
       setModalState({
         ...modalState,
         [`is${type}Open`]: true,
@@ -149,8 +146,8 @@ export const ProductAdmin = () => {
     };
 
     const handleDeleteSuccess = () => {
-      const updatedProduct = filteredProducts.filter(product => product._id !== modalState.selectedProduct._id);
-      setFilteredProducts(updatedProduct);
+      const updatedProducts = filteredProducts.filter(product => product._id !== modalState.selectedProduct._id);
+      setFilteredProducts(updatedProducts);
     };
 
     if (isFetching) {
@@ -162,7 +159,7 @@ export const ProductAdmin = () => {
             <Title>Product Management</Title>
             <SearchBar
                 type="text"
-                placeholder="Search user by name, description, price"
+                placeholder="Search product by name, description, price"
                 onChange={e => setQuery(e.target.value)}
             />
             <Table>
@@ -175,8 +172,8 @@ export const ProductAdmin = () => {
                     </tr>
                 </Thead>
                 <Tbody>
-                    {filteredProducts.map((product, index) => (
-                        <tr key={product.id}>
+                    {filteredProducts.map((product) => (
+                        <tr key={product._id}>
                             <Td>{product.name}</Td>
                             <Td>{product.description}</Td>
                             <Td>{product.price}</Td>
@@ -189,7 +186,7 @@ export const ProductAdmin = () => {
                 </Tbody>
             </Table>
             <Pagination>
-                {/* Por si hay muchos usuarios (el 1ero es el por defecto)*/}
+                {/* Por si hay muchos usuarios (el 1ero es el por defecto) */}
                 <span className="active">1</span>
                 <span>2</span>
                 <span>3</span>

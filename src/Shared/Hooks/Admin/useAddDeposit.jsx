@@ -1,12 +1,10 @@
 import { useState } from "react"
-import { addAccountRequest } from "../../../Services/apiAdmin"
+import { depositRequest } from "../../../Services/apiAdmin";
 
-export const useAddAcount = () => {
-    const [account, setAccount] = useState({
+export const useAddDeposit = () => {
+    const [deposit, setDeposit] = useState({
         noaccount: '',
-        balance: '',
-        typeofaccount: '',
-        user: ''
+        amount: '',
     });
 
     const [loading, setLoading] = useState(false);
@@ -15,8 +13,8 @@ export const useAddAcount = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setAccount({
-            ...account,
+        setDeposit({
+            ...deposit,
             [name]: value,
         });
     };
@@ -28,25 +26,25 @@ export const useAddAcount = () => {
         setSuccess(false);
 
         try {
-            const response = await addAccountRequest(account);
+            const response = await depositRequest(deposit);
             if (response.error) {
-                setError(response.err.message || 'Something went wrong');
+                setError(response.error.message || 'Se necesita número de cuenta');
             } else {
                 setSuccess(true);
             }
         } catch (err) {
-            setError(err.message || 'Something went wrong');
+            setError(err.message || 'Se necesita número de cuenta');
         } finally {
             setLoading(false);
         }
     };
   
     return {
-        account,
+        deposit,
         handleChange,
         handleSubmit,
         loading,
         error,
         success,
     };
-}
+};

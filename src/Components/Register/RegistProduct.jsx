@@ -89,7 +89,7 @@ const Message = styled.p`
 `;
 
 export const RegistProduct = () => {
-  const { product, handleChange, handleSubmit, loading, error, success } = useAddProduct();
+  const { product, handleChange, handleImageChange, handleSubmit, loading, error, success } = useAddProduct();
 
   return (
     <RegistProductContainer>
@@ -124,6 +124,29 @@ export const RegistProduct = () => {
             name="price"
             value={product.price}
             onChange={handleChange}
+            disabled={loading}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="productAmount">Cantidad del Producto:</Label>
+          <Input
+            type="number"
+            id="productAmount"
+            name="amount"
+            value={product.amount}
+            onChange={handleChange}
+            disabled={loading}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="productImages">Imágenes del Producto:</Label>
+          <Input
+            type="file"
+            id="productImages"
+            name="imagesProduct"
+            onChange={handleImageChange}
+            multiple
+            accept="image/*"
             disabled={loading}
           />
         </FormGroup>

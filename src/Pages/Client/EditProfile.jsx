@@ -62,14 +62,22 @@ const NoOrdersMessage = styled.div`
 const EditProfileContent = () => (
   <div>
     <h3>Editar Perfil</h3>
-    <p>Aquí puedes editar tu perfil y contraseña.</p>
+    <NoOrdersMessage>      
+      <h5>Colocar hook con cosas que puedes Editar</h5>
+      <p>Se puede editar nombre</p>
+      
+    </NoOrdersMessage>
   </div>
 );
 
 const NotificationsContent = () => (
   <div>
     <h3>Notificaciones</h3>
-    <p>Aquí puedes gestionar tus notificaciones.</p>
+    <NoOrdersMessage>      
+      <h5>Aqui puedes ver tus Notificaciones</h5>
+      <p>Hola</p>
+      
+    </NoOrdersMessage>
   </div>
 );
 
@@ -87,14 +95,22 @@ const OrdersContent = () => (
 const ProductContent = () => (
   <div>
     <h3>Productos comprados</h3>
-    <p>Aquí puedes ver tus productos comprados.</p>
+    <NoOrdersMessage>      
+      <h5>Aqui mostrar tipo registros en una tabla</h5>
+      <p>Empieza buscando entre los miles de productos que tenemos disponibles.</p>
+      
+    </NoOrdersMessage>
   </div>
 );
 
 const ContactsContent = () => (
   <div>
     <h3>Contactos favoritos</h3>
-    <p>Aquí puedes ver tus contactos favoritos.</p>
+    <NoOrdersMessage>      
+      <h5>Ver contactos favoritos</h5>
+      <p>En forma de lista con su alias e información</p>
+      
+    </NoOrdersMessage>
   </div>
 );
 
@@ -107,7 +123,9 @@ const SupportContent = () => (
 
 export const EditProfile = () => {
   const [activeTab, setActiveTab] = useState('Pedidos');
-  const { logoutSys } = useUserDetails(); 
+  const { logoutSys, name } = useUserDetails(); 
+
+  
 
   const handleLogout = () => {
     logoutSys();
@@ -137,8 +155,8 @@ export const EditProfile = () => {
       <Row>
         <ProfileSidebar md={3}>
           <ProfileHeader>
-            <ProfileImage src="https://via.placeholder.com/100" alt="Profile" />
-            <ProfileName>Santiago González</ProfileName>
+            <ProfileImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-cskA2FbOzFi7ACNiGruheINgAXEqFL1TQ&s" alt="Profile" />
+            <ProfileName>Hola, {name}</ProfileName>
             <ProfileEmail>papide-estrada@gmail.com</ProfileEmail>
           </ProfileHeader>
           <SidebarMenu>

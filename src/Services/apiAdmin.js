@@ -71,6 +71,33 @@ export const deleteUserRequest = async (id) => {
         }
     }
 }
+
+///----------------------Parte Fabricciooooooo XD-----------
+//Parte de fabricio 
+export const deleteAccountRequest = async (id) => {
+    try {
+      return await apiClient.delete(`account/deleteAccount/${id}`);
+    } catch (err) {
+      return {
+        error: true,
+        err
+      };
+    }
+};
+
+export const deleteProductRequest = async (id) =>{
+    try{
+        return await apiClient.delete(`product/deleteProduct/${id}`);
+    }catch(err){
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+
+
 //parte de fabricio
 export const accountsRequest = async () => {
     try {

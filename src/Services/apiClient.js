@@ -17,3 +17,25 @@ apiClient.interceptors.request.use(
     },
     (err) => Promise.reject(err)
 )
+
+export const transferRequest = async(transfer)=>{
+    try {
+        return await apiClient.post('/transfer/transferAmount', transfer)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const myAccountRequest = async () => {
+    try {
+        return await apiClient.get('/account/getAccountsByUser')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}

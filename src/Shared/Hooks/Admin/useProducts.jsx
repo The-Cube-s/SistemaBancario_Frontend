@@ -9,8 +9,7 @@ export const useProducts = () => {
     const getProducts = async () =>{
       try {
           const response = await productsRequest()
-          
-          //Infora¿mación 
+           
           if(response.error){
               return toast.error(response?.err?.response?.data?.message)
           }

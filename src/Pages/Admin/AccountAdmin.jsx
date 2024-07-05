@@ -181,7 +181,7 @@ export const AccountAdmin = () => {
               <Td>{account.noaccount}</Td>
               <Td>{account.balance}</Td>
               <Td>{account.typeofaccount}</Td>
-              <Td>{account.user}</Td>
+              <Td>{account.user.name}</Td>
               <Td>
                 <Button onClick={() => openModal('View', account)}>View Account</Button>
                 <Button onClick={() => openModal('Delete', account)}>Delete</Button>

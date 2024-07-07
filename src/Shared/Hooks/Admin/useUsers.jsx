@@ -9,7 +9,6 @@ export const useUsers = () => {
     const getUsers = async () =>{
       try {
           const response = await watchUsersRequest()
-          
           if(response.error){
               return toast.error(response?.err?.response?.data?.message)
           }

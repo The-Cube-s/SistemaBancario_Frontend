@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Modal, Carousel } from 'react-bootstrap';
 import styled from 'styled-components';
-import { useProducts } from '../../Shared/Hooks/Admin/useProducts'; 
+import { useProducts } from '../../Shared/Hooks/Admin/useProducts';
 import Fondo from "../../assets/Fondo.jpg";
 import Logo1 from "../../assets/Logo-Fetiche.png";
 import Logo2 from "../../assets/Logo-Velvet.png";
@@ -11,17 +11,27 @@ import Logo5 from "../../assets/Logo-Macdonals.png";
 import Logo6 from "../../assets/Logo-LamediaCancha.png";
 import Logo7 from "../../assets/Logo-Kinal.png";
 import Logo8 from "../../assets/Logo-Estancia.png";
-import HelpCenterIcon from "../../assets/Logo-signo.svg"; 
+import HelpCenterIcon from "../../assets/Logo-signo.svg";
 import WhatsAppIcon from "../../assets/Logo-ViaWatsapp.svg";
 import CustomerServiceIcon from "../../assets/Logo-Telefono.svg";
 import LogoBanco from "../../assets/Logo-Banco.png";
+import { useAddBuy } from '../../Shared/Hooks/Admin/useAddBuy';
+import { useUserDetails } from '../../Shared/Hooks/useUserDetails';
 
 export const ProductClient = () => {
   const { products, getProducts, isFetching } = useProducts();
+  const { uid } = useUserDetails();
   const [modalState, setModalState] = useState({
     isOpen: false,
     selectedProduct: null,
   });
+
+  const [confirmModalOpen, setConfirmModalOpen] = useState({
+    isOpen: false,
+    selectedProductBuy: null,
+  });
+
+  const { buy, handleChange, handleSubmit, loading, error, success } = useAddBuy();
 
   useEffect(() => {
     getProducts();
@@ -41,10 +51,25 @@ export const ProductClient = () => {
     });
   };
 
+  const openConfirmationModal = (productId) => {
+    setConfirmModalOpen({
+      isOpen: true,
+      selectedProductBuy: products.find(product => product._id === productId)
+    });
+  };
+
+  const closeConfirmationModal = () => {
+    setConfirmModalOpen({
+      isOpen: false,
+      selectedProductBuy: null,
+    });
+  };
+  
+
   if (isFetching) {
     return <div>Loading...</div>;
   }
-
+  
   const rutaImageProduct = `http://localhost:2656`
 
   return (
@@ -106,6 +131,7 @@ export const ProductClient = () => {
                   <Card.Title>{product.name}</Card.Title>
                   <Card.Text>{product.description}</Card.Text>
                   <Button variant="primary" onClick={() => openModal(product)}>Ver Producto</Button>
+                  <Button variant="primary" onClick={() => openConfirmationModal(product._id)}>Comprar</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -138,6 +164,34 @@ export const ProductClient = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>Cerrar</Button>
+          </Modal.Footer>
+        </Modal>
+      )}
+
+      {confirmModalOpen.selectedProductBuy && (
+        <Modal show={confirmModalOpen.isOpen} onHide={closeConfirmationModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Su compra se realizará</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h5>Nombre: {confirmModalOpen.selectedProductBuy.name}</h5>
+            <p>Precio: {confirmModalOpen.selectedProductBuy.price}</p>
+            <Input
+              type="number"
+              id="buyAmount"
+              name="amount"
+              value={buy.amount}
+              onChange={handleChange}
+              disabled={loading}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => handleSubmit(uid, confirmModalOpen.selectedProductBuy._id, buy.amount)}>
+              Confirmar Compra
+            </Button>
+            <Button variant="secondary" onClick={closeConfirmationModal}>Cancelar</Button>
+            {error && <p>{error}</p>}
+            {success && <p>¡Compra realizada con éxito!</p>}
           </Modal.Footer>
         </Modal>
       )}
@@ -398,6 +452,20 @@ const FooterText = styled.p`
   font-size: 14px;
   color: #6c757d;
   margin: 0;
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #333;
+  color: #f0f0f0;
+  outline: none;
+
+  &:focus {
+    border-color: #1e90ff;
+  }
 `;
 
 export default ProductClient;

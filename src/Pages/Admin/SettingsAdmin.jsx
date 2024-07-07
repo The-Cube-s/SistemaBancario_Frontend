@@ -3,6 +3,7 @@ import styled from 'styled-components';
 //agregar componentes
 import { RegistProduct } from '../../Components/Register/RegistProduct';
 import { Deposit } from '../../Components/ADMIN/Deposits/Deposit';
+import { AddAccount } from '../../Components/ADMIN/Account/AddAccount';
 
 const SettingsAdminContainer = styled.div`
   display: flex;
@@ -88,7 +89,7 @@ export const SettingsAdmin = () => {
             {activeSection === 'depositos' && < Deposit /> }
             {activeSection === 'saldos-creditos' && <div>Contenido de Saldos y Créditos</div>}
             {activeSection === 'producto' && <RegistProduct />}
-            {activeSection === 'cuenta' && <div>Contenido de cuenta</div>}
+            {activeSection === 'cuenta' && <AddAccount />}
           </SectionContent>
         </Content>
       )}

@@ -39,3 +39,25 @@ export const myAccountRequest = async () => {
         }
     }
 }
+
+export const transferinfoRequest = async () => {
+    try {
+        return await apiClient.get('/transfer/getAccountInfo')        
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const depositinfoRequest = async () => {
+    try {
+        return await apiClient.get('/deposit/getUserDeposits')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}

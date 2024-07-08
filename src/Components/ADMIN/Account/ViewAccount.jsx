@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 
@@ -53,7 +53,7 @@ const ViewAccount = ({ isOpen, onRequestClose, account = {} }) => {
             <p><strong>No.Account:</strong> {account.noaccount}</p>
             <p><strong>Balance:</strong> {account.balance}</p>
             <p><strong>Type of Account:</strong> {account.typeofaccount}</p>
-            <p><strong>User:</strong> {account.user}</p>
+            <p><strong>User:</strong> {account.user.name}</p>
           </>
         ) : (
           <p>Loading...</p>
@@ -65,5 +65,3 @@ const ViewAccount = ({ isOpen, onRequestClose, account = {} }) => {
 };
 
 export default ViewAccount;
-
-//Se implemento esto jeje

@@ -123,7 +123,7 @@ const SupportContent = () => (
 
 export const EditProfile = () => {
   const [activeTab, setActiveTab] = useState('Pedidos');
-  const { logoutSys, name } = useUserDetails(); 
+  const { logoutSys, name, username } = useUserDetails(); 
 
   
 
@@ -157,7 +157,7 @@ export const EditProfile = () => {
           <ProfileHeader>
             <ProfileImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-cskA2FbOzFi7ACNiGruheINgAXEqFL1TQ&s" alt="Profile" />
             <ProfileName>Hola, {name}</ProfileName>
-            <ProfileEmail>papide-estrada@gmail.com</ProfileEmail>
+            <ProfileEmail>{username}</ProfileEmail>
           </ProfileHeader>
           <SidebarMenu>
             <SidebarMenuItem active={activeTab === 'Historial'} onClick={() => setActiveTab('Historial')}>Historial</SidebarMenuItem>

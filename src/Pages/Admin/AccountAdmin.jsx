@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAccounts } from '../../Shared/Hooks/Admin/useAccounts';
 import ViewAccount from '../../Components/ADMIN/Account/ViewAccount';
-import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
+import DeleteAccount from '../../Components/ADMIN/Account/DeleteAccount';
 
 const AccountAdminContainer = styled.div`
   padding: 20px;
@@ -148,9 +148,9 @@ export const AccountAdmin = () => {
     });
   };
 
-  const handleDelete = () => {
-    // Implementar la lógica de eliminación aquí
-    closeModal('Delete');
+  const handleDeleteSuccess = () => {
+    const updatedAccounts = filteredAccounts.filter(account => account._id !== modalState.selectedAccount._id);
+    setFilteredAccounts(updatedAccounts);
   };
 
   if (isFetching) {
@@ -181,7 +181,7 @@ export const AccountAdmin = () => {
               <Td>{account.noaccount}</Td>
               <Td>{account.balance}</Td>
               <Td>{account.typeofaccount}</Td>
-              <Td>{account.user}</Td>
+              <Td>{account.user.name}</Td>
               <Td>
                 <Button onClick={() => openModal('View', account)}>View Account</Button>
                 <Button onClick={() => openModal('Delete', account)}>Delete</Button>
@@ -197,11 +197,13 @@ export const AccountAdmin = () => {
         <span>4</span>
         <span>5</span>
       </Pagination>
-      <DeleteModal
+      <DeleteAccount
         isOpen={modalState.isDeleteOpen}
         onRequestClose={() => closeModal('Delete')}
         itemName={modalState.selectedAccount?.noaccount}//Se coloco el noaccount para dar referencia a la cuenta que va eliminar 
-        onDelete={handleDelete}
+        // Aqui se extrae el id
+        accountId={modalState.selectedAccount?._id} 
+        onDeleteSuccess={handleDeleteSuccess}
       />
       <ViewAccount
         isOpen={modalState.isViewOpen}

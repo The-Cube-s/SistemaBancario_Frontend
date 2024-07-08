@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useProducts } from '../../Shared/Hooks/Admin/useProducts';
+import { useProducts } from '../../Shared/Hooks/Admin/useProducts'; 
 import ViewProduct from '../../Components/ADMIN/Products/ViewProduct';
-import DeleteModal from '../../Components/ADMIN/User/DeleteModal';
+import DeleteProduct from '../../Components/ADMIN/Products/DeleteProduct';
 
 const UsersAdminContainer = styled.div`
   padding: 20px;
@@ -129,6 +129,7 @@ export const ProductAdmin = () => {
     }, [query, products]);
 
     const openModal = (type, product) => {
+      console.log("Opening modal for product: ", product); // Depuración
       setModalState({
         ...modalState,
         [`is${type}Open`]: true,
@@ -144,9 +145,9 @@ export const ProductAdmin = () => {
       });
     };
 
-    const handleDelete = () => {
-      // Implementar la lógica de eliminación aquí
-      closeModal('Delete');
+    const handleDeleteSuccess = () => {
+      const updatedProducts = filteredProducts.filter(product => product._id !== modalState.selectedProduct._id);
+      setFilteredProducts(updatedProducts);
     };
 
     if (isFetching) {
@@ -185,18 +186,20 @@ export const ProductAdmin = () => {
                 </Tbody>
             </Table>
             <Pagination>
-                {/* Por si hay muchos productos (el 1ero es el por defecto)*/}
+                {/* Por si hay muchos usuarios (el 1ero es el por defecto) */}
                 <span className="active">1</span>
                 <span>2</span>
                 <span>3</span>
                 <span>4</span>
                 <span>5</span>
             </Pagination>
-            <DeleteModal
+            <DeleteProduct
               isOpen={modalState.isDeleteOpen}
               onRequestClose={() => closeModal('Delete')}
               itemName={modalState.selectedProduct?.name}
-              onDelete={handleDelete}
+              // Aqui se extrae el id
+              productId={modalState.selectedProduct?._id} 
+              onDeleteSuccess={handleDeleteSuccess}
             />
             <ViewProduct
               isOpen={modalState.isViewOpen}

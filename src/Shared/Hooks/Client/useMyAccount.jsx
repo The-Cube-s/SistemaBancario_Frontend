@@ -3,7 +3,9 @@ import { myAccountRequest } from '../../../Services/apiClient'
 import toast from "react-hot-toast"
 
 export const useMyAccount = () => {
-    const [account, setAccount] = useState(null);
+    const [account, setAccount] = useState({
+        //cambiar el hook
+    });
     const [isFetching, setIsFetching] = useState(false);
 
     const getMyAccounts = async () => {

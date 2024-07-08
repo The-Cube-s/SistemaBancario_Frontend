@@ -1,11 +1,14 @@
 import React from 'react'
-//Se hara por procesos
-import { SelectMyAccount } from '../../Components/CLIENT/SelectMyAccount'
+
+import { TranseferClient } from '../../Components/CLIENT/TranseferClient'
+
 
 export const TransferenciasClient = () => {
   return (
     <>
-      <SelectMyAccount/>
+
+        <TranseferClient/>
+
     </>
   )
 }

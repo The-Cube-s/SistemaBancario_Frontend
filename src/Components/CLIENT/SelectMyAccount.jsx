@@ -13,10 +13,6 @@ export const SelectMyAccount = () => {
         return <div>Loading accounts...</div>;
     }
 
-    if (!account) {
-        return <div>No accounts available</div>;
-    }
-
     return (
         <div>
             <h1>My Accounts</h1>

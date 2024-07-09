@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import { depositRequest } from "../../../Services/apiAdmin";
 
 export const useAddDeposit = () => {
@@ -31,6 +31,7 @@ export const useAddDeposit = () => {
                 setError(response.error.message || 'Se necesita número de cuenta');
             } else {
                 setSuccess(true);
+                setDeposit({ noaccount: '', amount: '' }); // Limpia los campos del formulario
             }
         } catch (err) {
             setError(err.message || 'Se necesita número de cuenta');

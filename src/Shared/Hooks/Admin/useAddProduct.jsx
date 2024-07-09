@@ -56,6 +56,14 @@ export const useAddProduct = () => {
                 setError(response.err.message || 'Something went wrong');
             } else {
                 setSuccess(true);
+                setProduct({
+                    name: '',
+                    description: '',
+                    price: '',
+                    amount: '', 
+                    imagesProduct: [] 
+                });
+                document.getElementById('productImages').value = ''; 
             }
         } catch (err) {
             setError(err.message || 'Something went wrong');

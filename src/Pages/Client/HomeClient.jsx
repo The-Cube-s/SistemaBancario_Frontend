@@ -2,9 +2,9 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 // Importar imágenes
 import HomeImage from '../../assets/Home2.jpg';
-import Paquete1 from '../../assets/Paquete1.jpg';
-import Paquete2 from '../../assets/Paquete2.jpg';
-import Paquete3 from '../../assets/Paquete3.jpg';
+import vip from '../../assets/vip.jpg';
+import basic from '../../assets/basic.png';
+import premium from '../../assets/premium.png';
 
 const StyledContainer = styled(Container)`
   padding: 1.8rem;
@@ -46,7 +46,10 @@ const OfferCard = styled(Card)`
 `;
 
 const OfferImage = styled(Card.Img)`
-  height: 550px; // Ajusta este valor según sea necesario
+  max-width: 180px;
+  object-fit: cover;
+  margin: 0 auto;
+  height: 220px; 
   object-fit: cover;
 `;
 
@@ -74,27 +77,27 @@ export const HomeClient = () => {
           <OffersRow>
             <Col md={4}>
               <OfferCard className="mb-3">
-                <OfferImage variant="top" src={Paquete1} />
+                <OfferImage variant="top" src={basic} />
                 <Card.Body>
-                  <Card.Title>Plan cayaleño</Card.Title>
+                  <Card.Title>Plan Básico</Card.Title>
                   <Card.Text>Abre esta cuenta con Q500 mensuales</Card.Text>
                 </Card.Body>
               </OfferCard>
             </Col>
             <Col md={4}>
               <OfferCard className="mb-3">
-                <OfferImage variant="top" src={Paquete2} />
+                <OfferImage variant="top" src={vip} />
                 <Card.Body>
-                  <Card.Title>Plan Fitness</Card.Title>
+                  <Card.Title>Plan VIP</Card.Title>
                   <Card.Text>Abre esta cuenta con Q1000 mensuales</Card.Text>
                 </Card.Body>
               </OfferCard>
             </Col>
             <Col md={4}>
               <OfferCard className="mb-3">
-                <OfferImage variant="top" src={Paquete3} />
+                <OfferImage variant="top" src={premium} />
                 <Card.Body>
-                  <Card.Title>Plan Modelo</Card.Title>
+                  <Card.Title>Plan Premium</Card.Title>
                   <Card.Text>Abre esta cuenta con Q1500 mensuales o superior</Card.Text>
                 </Card.Body>
               </OfferCard>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTransferInfo } from '../../Shared/Hooks/Client/useTransferInfo';
 import { useDepositInfo } from '../../Shared/Hooks/Client/useDepositInfo';
+import { usePurchaseInfo } from '../../Shared/Hooks/Client/usePurchaseInfo'; // Import the new hook
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -49,18 +50,20 @@ const Balance = styled.p`
 export const MyTransactions = () => {
     const { transfer, saldo, getTransfers, isFetching: isFetchingTransfers } = useTransferInfo();
     const { deposits, getDeposits, isFetching: isFetchingDeposits } = useDepositInfo();
+    const { purchases, getPurchases, isFetching: isFetchingPurchases } = usePurchaseInfo(); // Use the new hook
 
     useEffect(() => {
         getTransfers();
         getDeposits();
+        getPurchases(); 
     }, []);
 
-    const isFetching = isFetchingTransfers || isFetchingDeposits;
+    const isFetching = isFetchingTransfers || isFetchingDeposits || isFetchingPurchases;
 
     return (
         <Container>
             <Header>Mis Transacciones</Header>
-            <Balance>Saldo: {saldo}</Balance>
+            <Balance></Balance>
             {isFetching ? (
                 <p>Cargando transacciones y depósitos...</p>
             ) : (
@@ -71,7 +74,7 @@ export const MyTransactions = () => {
                             <Th>Fecha</Th>
                             <Th>Monto</Th>
                             <Th>Tipo</Th>
-                            <Th>Cuenta de destino</Th>
+                            <Th>Acreedor</Th>
                         </Tr>
                     </thead>
                     <tbody>
@@ -93,10 +96,18 @@ export const MyTransactions = () => {
                                 <Td>{deposit.account?.user?.name || 'N/A'}</Td>
                             </Tr>
                         ))}
+                        {Array.isArray(purchases) && purchases.map((purchase) => (
+                            <Tr key={purchase._id}>
+                                <Td>{purchase._id}</Td>
+                                <Td>{new Date().toLocaleDateString()}</Td> 
+                                <Td>{purchase.product.price}</Td>
+                                <Td>{purchase.user.name}</Td>
+                                <Td>{purchase.product.name}</Td>
+                            </Tr>
+                        ))}
                     </tbody>
                 </Table>
             )}
         </Container>
     );
 };
-

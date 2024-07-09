@@ -2,6 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { registerRequest } from "../../../Services/apiAdmin";
 
+
 export const useRegister = () => {
     const [user, setUser] = useState({
         name: '',
@@ -45,6 +46,21 @@ export const useRegister = () => {
             const response = await registerRequest(user);
             if (response.status === 200) {
                 setSuccess(true);
+                setUser({
+                    name: '',
+                    surname: '',
+                    username: '',
+                    accountNumber: '',
+                    DPI: '',
+                    address: '',
+                    phone: '',
+                    email: '',
+                    password: '',
+                    retypePassword: '',
+                    jobname: '',
+                    monthlyincome: '',
+                }); 
+                toast.success('Registration successful!');
             } else {
                 setError(response.data?.message || 'Something went wrong');
             }

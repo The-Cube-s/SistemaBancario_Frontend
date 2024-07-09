@@ -2,6 +2,7 @@ import { useAddDeposit } from "../../../Shared/Hooks/Admin/useAddDeposit"
 
 import styled from 'styled-components';
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,10 +66,20 @@ const Message = styled.p`
 export const Deposit = () => {
     const { deposit, handleChange, handleSubmit, loading, error, success } = useAddDeposit();
 
+    const handleSubmitAndClear = async (e) => {
+        await handleSubmit(e);
+        if (success) {
+            setDeposit({
+                noaccount: '',
+                amount: '',
+            });
+        }
+    };
+
     return (
         <Container>
             <Title>Deposit Money</Title>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmitAndClear}>
                 <div>
                     <Label>No Account:</Label>
                     <Input

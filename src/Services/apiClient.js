@@ -61,3 +61,15 @@ export const depositinfoRequest = async () => {
         }
     }
 }
+
+export const myBuysRequest = async () => {
+    try {
+        return await apiClient.get('/buy/getUserBuys')
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+

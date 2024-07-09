@@ -145,6 +145,17 @@ export const addAccountRequest = async(account)=>{
     }
 }
 
+export const addBuyRequest = async(buy)=>{
+    try {
+        return await apiClient.post('/buy/saveBuy', buy)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
 export const depositRequest = async(deposit)=>{
     try {
         return await apiClient.post('/deposit/depositMoney', deposit)

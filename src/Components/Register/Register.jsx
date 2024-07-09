@@ -54,7 +54,9 @@ export const Register = () => {
                               name="accountNumber"
                               value={user.accountNumber}
                               onChange={handleChange}
+                              placeholder="SE GENERA AUTOMATICAMENTE"
                               readOnly
+                              
                           />
                       </div>
                   </div>

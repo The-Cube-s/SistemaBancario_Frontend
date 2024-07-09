@@ -33,6 +33,12 @@ export const useAddAcount = () => {
                 setError(response.err.message || 'Something went wrong');
             } else {
                 setSuccess(true);
+                setAccount({
+                    noaccount: '',
+                    balance: '',
+                    typeofaccount: '',
+                    user: ''
+                }); // Limpia los campos del formulario
             }
         } catch (err) {
             setError(err.message || 'Something went wrong');
@@ -40,7 +46,7 @@ export const useAddAcount = () => {
             setLoading(false);
         }
     };
-  
+
     return {
         account,
         handleChange,

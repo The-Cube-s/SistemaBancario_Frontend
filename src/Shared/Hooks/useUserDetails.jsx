@@ -12,10 +12,11 @@ const logoutSys = ()=>{
 }
 export const useUserDetails = () => {
     const [loggedUser, setUserDetails] = useState(getUserDetails())
-    
+        
+
   return {
     isLogged: Boolean(loggedUser),
-    uid: loggedUser?.uid ? loggedUser.uid : 'Guest',
+    uid: loggedUser?._id ? loggedUser.uid : 'Guest',
     username: loggedUser?.username ? loggedUser.username : 'Guest',
     name: loggedUser?.name ? loggedUser.name : 'Guest',
     logoutSys

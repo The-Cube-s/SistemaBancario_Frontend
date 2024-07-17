@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, ListGroup, ListGroupItem } from 'react-boots
 import styled from 'styled-components';
 // Importaciones de funcionalidades
 import { useUserDetails } from '../../Shared/Hooks/useUserDetails';
+//Importar el editar perfil
+import MyProfile from '../../Components/CLIENT/MyProfile';
 
 const StyledContainer = styled(Container)`
   padding: 2rem;
@@ -63,8 +65,7 @@ const EditProfileContent = () => (
   <div>
     <h3>Editar Perfil</h3>
     <NoOrdersMessage>      
-      <h5>Colocar hook con cosas que puedes Editar</h5>
-      <p>Se puede editar nombre</p>
+      <MyProfile></MyProfile>
       
     </NoOrdersMessage>
   </div>

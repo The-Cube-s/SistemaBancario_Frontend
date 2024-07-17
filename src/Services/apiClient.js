@@ -73,3 +73,17 @@ export const myBuysRequest = async () => {
     }
 }
 
+export const MyUserRequest = async (user) => {
+    try {
+        return await apiClient.put(`/user/update/${user._id}`, user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    } catch (err) {
+        return {
+            error: true,
+            err
+        };
+    }
+};

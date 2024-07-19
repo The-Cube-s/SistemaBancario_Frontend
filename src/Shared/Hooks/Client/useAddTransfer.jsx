@@ -11,8 +11,10 @@ export const useAddTransfer = () => {
       const res = await transferRequest(transfer)
       setLoading(false)
 
+      console.log(res.err.request.response.message);
+      console.log(res);
       if(res.error){
-        return toast.error(res.error.response.data.message || 'Error Transfer')
+        return toast.error(res?.err?.message || 'Error Transfer')
       }
 
       return toast.success('Successfully Transfer!')

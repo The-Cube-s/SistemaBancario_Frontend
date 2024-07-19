@@ -4,6 +4,7 @@ const apiClient = axios.create({
     baseURL: 'http://localhost:2656/',
     timeout: 1000
 })
+
 apiClient.interceptors.request.use(
     (config) => {
         //extraemos el token de los headers
@@ -87,3 +88,25 @@ export const MyUserRequest = async (user) => {
         };
     }
 };
+
+export const getAccountBalance = async(uid) =>{
+    try {
+        return await apiClient.get(`/account/getAccountBalance${uid}`)
+    } catch (err) {
+        return {
+            error: true,
+            err
+        }
+    }
+}
+
+export const convertData = async(converter) =>{
+    try {
+        return await apiClient.post(`/account/convertData`, converter)
+    } catch (err) {
+        return{
+            error: true,
+        err
+        }
+    }
+} 

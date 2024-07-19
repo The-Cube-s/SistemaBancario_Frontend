@@ -22,9 +22,15 @@ export const TranseferClient = () => {
 
     if(loading) return console.log('ta cargando ');
 
+    const cleanState = () =>{
+        setTransfer({date: '', amount: '', noaccount: '',user: '' })
+    }
+
     const handleOnSubmit = (e) =>{
         e.preventDefault()
         transfer.user = uid
+        cleanState()
+        console.log(uid);
         console.log(transfer.user);
         addTransfer(transfer)
     }
